@@ -1,0 +1,7 @@
+[user]
+	name = Santhosh Sundararaman
+	email = santosh@vmware.com
+[alias]
+   co = checkout
+   br = branch
+   ls-br = show-branch --list
