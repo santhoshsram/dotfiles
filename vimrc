@@ -11,10 +11,6 @@ call pathogen#helptags()
 """""""""""""""""""""""""""""""""""""""""""
 "          General Settings               "
 """""""""""""""""""""""""""""""""""""""""""
-set nocompatible                 " Use vim mode and not vi compatibility mode
-                                 " Note: Always have this at the very beginning
-                                 " of the file as the first config line.
-
 set autoindent                   " Always set autoindenting on
 set backspace=indent,eol,start   " Backspace over everything in insert mode
 set cinoptions=g0,t0,c1s,(0,m1,l1 " C indent options. See :help cinoptions-values
@@ -27,8 +23,12 @@ set hidden                       " Keep unchanged
 set history=100                  " Keep 100 lines of command line history
 set hlsearch                     " Highlight search matches
 set incsearch                    " Display matches while typing pattern
+set laststatus=2                 " Always display status line
 set magic                        " Interpret special characters in pattern matching
 set nobackup                     " Do not keep a backup file
+set nocompatible                 " Use vim mode and not vi compatibility mode
+                                 " Note: Always have this at the very beginning
+                                 " of the file as the first config line.
 set noerrorbells                 " Don't beep on errors
 set nostartofline                " Don't jump to start of line during page up/down
 set nowrapscan                   " Don't wrap searches around end of file
@@ -54,6 +54,14 @@ filetype indent on               " Intelligent auto-indent based on filetype
 filetype plugin on               " Enable filetype plugin. For CCTree.vim
 fixdel                           " Fix Del key behavior
 syntax on                        " Turn syntax coloring on
+
+
+"""""""""""""""""""""""""""""""""""""""""""
+"          Status Line                    "
+"""""""""""""""""""""""""""""""""""""""""""
+" Format used:
+" <truncate at beginning><file-path> <help><modified><readonly> <git branch> " <<Right indent>> <line#/total-lines,col#/virt col#>, <current pos in file>
+set statusline=%<%f\ %h%m%r\ %{fugitive#statusline()}\ %=%-14.(%l/%L,%c%V%)\ %P
 
 
 """""""""""""""""""""""""""""""""""""""""""
@@ -151,6 +159,10 @@ noremap <C-S-H> :call ShowHighlightGroup()<CR>
 """""""""""""""""""""""""""""""""""""""""""
 "          Auto Commands                  "
 """""""""""""""""""""""""""""""""""""""""""
+
+" Cleanup fugitive buffers
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
 " Set filetype on opening a file
 autocmd BufNewFile,BufRead *.h set filetype=c
 autocmd BufNewFile,BufRead *.pm set filetype=perl
