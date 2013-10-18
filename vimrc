@@ -34,6 +34,7 @@ set nostartofline                " Don't jump to start of line during page up/do
 set nowrapscan                   " Don't wrap searches around end of file
 set pastetoggle=<F2>             " Set F2 as paste toggle key
 set ruler                        " Always show cursor position in statusbar
+set scrolloff=2                  " Always show 2 lines above and below the cursor
 set shiftwidth=3                 " Num spaces to use for each indent
 set showcmd                      " Display incomplete commands in the last line
 set showmatch                    " Show matching braces
@@ -159,6 +160,7 @@ noremap <C-S-H> :call ShowHighlightGroup()<CR>
 noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gw :Gwrite<CR>
+noremap <Leader>gc :Gcommit<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""
