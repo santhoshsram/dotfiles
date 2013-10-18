@@ -155,6 +155,11 @@ noremap <Leader>m :marks<CR>
 " of word under the cursor
 noremap <C-S-H> :call ShowHighlightGroup()<CR>
 
+" Key mappings for fugitive git plugin
+noremap <Leader>gs :Gstatus<CR>
+noremap <Leader>gb :Gblame<CR>
+noremap <Leader>gw :Gwrite<CR>
+
 
 """""""""""""""""""""""""""""""""""""""""""
 "          Auto Commands                  "
