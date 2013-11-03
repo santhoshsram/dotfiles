@@ -1,0 +1,21 @@
+startup_message off
+defscrollback 10000
+
+# Allow bold colors
+attrcolor b ".I"
+
+# Set colors. AB = background, AF=foreground
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm:ti@:te@'
+
+# Use current bg color for erased chars
+defbce on
+
+hardstatus on
+hardstatus alwayslastline
+hardstatus string "%{.bW}%-Lw%{.rW}%n %t%{-}%+Lw %=%{..G} %H %{..Y}"
+
+# Turn off visual bell - and thereby annoying screen flashes
+vbell off
+
+# Set escape key to ` (backtick) and meta key to ` (backtick)
+# escape ``
