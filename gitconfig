@@ -5,3 +5,8 @@
    co = checkout
    br = branch
    ls-br = show-branch --list
+   opened = diff --stat
+   logs = log --pretty=format:'%H %C(cyan) %s %Creset [%ad] %Cblue %cn' --date=short
+   logas = log --pretty=format:'%h %C(cyan) %s %Cblue %cn'
+   logm = log --pretty=format:'%H %C(cyan) %s %Cblue %cn %n%b'
+   logam = log --pretty=format:'%h %C(cyan) %s %Cblue %cn %n%b'
