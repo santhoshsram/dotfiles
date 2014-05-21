@@ -1,0 +1,15 @@
+1. Create the following symlinks
+
+ln -sf dotfiles/bashrc ~/.bashrc
+ln -sf dotfiles/vimrc ~/.vimrc
+ln -sf dotfiles/gitconfig ~/.gitconfig
+ln -sf dotfiles/screenrc ~/.screenrc
+ln -sf dotfiles/ssh_config ~/.ssh/config
+
+2. Init and update the vim submodules
+
+cd dotfiles/
+git submodule init
+git submodule update
+
+
