@@ -123,24 +123,6 @@ endfunction
 "  Set formatting options based on the current file      "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function SetFormatting()
-   let l:bsd_path3 = matchstr(expand("%:p"), 'modules\/vmkernel\/tcpip3\/freebsd')
-   let l:bsd_path4 = matchstr(expand("%:p"), 'modules\/vmkernel\/tcpip4\/freebsd')
-   let l:ovs_esx_kernel_path = matchstr(expand("%:p"), 'ovs-on-esx\/nsx-int.*\/esx\/kernel')
-   let l:ovs_path = matchstr(expand("%:p"), 'ovs-on-esx\/nsx-int')
-   if !empty(l:bsd_path3) || !empty(l:bsd_path4)
-      " FreeBSD code
-      set tabstop=8 shiftwidth=8 noexpandtab
-   elseif !empty(l:ovs_esx_kernel_path)
-      " OVS esx kernel code
-      set tabstop=3 shiftwidth=3 expandtab
-   elseif !empty(l:ovs_path)
-      " OVS code
-      set tabstop=4 shiftwidth=4 expandtab
-   else
-      " Defaulting to VMkernel coding standard for 
-      " everything else.
-      set tabstop=3 shiftwidth=3 expandtab
-   endif
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
