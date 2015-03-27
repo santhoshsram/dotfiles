@@ -210,15 +210,6 @@ autocmd FileType c call SetCommentKeyMappingForC()
 """""""""""""""""""""""""""""""""""""""""""
 "          Abbrevations                   "
 """""""""""""""""""""""""""""""""""""""""""
-abbreviate CFUNCHDR79 /*<CR><BS>-----------------------------------------------------------------------------<CR>*<CR> --<CR><CR>Results:<CR><CR>Side effects:<CR><CR><BS><BS>-----------------------------------------------------------------------------<CR>*/<CR>
-
-abbreviate CFUNCHDR72 /*<CR><BS>----------------------------------------------------------------------<CR>*<CR> --<CR><CR>Results:<CR><CR>Side effects:<CR><CR><BS><BS>----------------------------------------------------------------------<CR>*/<CR>
-
-abbreviate CVMW /************************************************************<CR>Copyright <ESC>:r !date '+\%Y'<CR>kJA VMware, Inc.  All rights reserved.<CR>VMware Confidential<CR><BS>***********************************************************/<CR>
-
-" VMKTCPIP code block
-abbreviate vmktcp #if defined (__VMKTCPIP__)<CR>#else<TAB>/* !__VMKTCPIP__ */<CR>#endif<TAB>/* __VMKTCPIP__ */<CR>
-abbreviate nvmktcp #if !defined (__VMKTCPIP__)<CR>#else<TAB>/* __VMKTCPIP__ */<CR>#endif<TAB>/* !__VMKTCPIP__ */<CR>
 
 " Abbrevations for cscope (in same window)
 cnoreabbrev csg cs f g
