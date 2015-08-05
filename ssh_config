@@ -33,7 +33,6 @@ Host *
 #   AddressFamily any
 #   ConnectTimeout 0
 #   IdentityFile ~/.ssh/identity
-#   IdentityFile ~/.ssh/id_rsa
 #   IdentityFile ~/.ssh/id_dsa
 #   Port 22
 #   Protocol 2,1
@@ -44,6 +43,7 @@ Host *
 #   Tunnel no
 #   TunnelDevice any:any
 #   PermitLocalCommand no
+    IdentityFile ~/.ssh/id_rsa
     SendEnv LANG LC_*
     HashKnownHosts no
     GSSAPIAuthentication yes
