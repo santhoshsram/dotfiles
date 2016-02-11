@@ -1,8 +1,7 @@
 ##################################
-#											#
-#		BASH Enviroment SETUP		#
-#		User: santhosh					#
-#											#
+#                                #
+#      BASH Enviroment SETUP     #
+#                                #
 ##################################
 
 
@@ -23,9 +22,9 @@ export EDITOR=vim
 export TERM=xterm
 
 ##################################
-#											#
-#		BASH Command Aliases			#
-#											#
+#                                #
+#      BASH Command Aliases      #
+#                                #
 ##################################
 
 if [ "$Machine" = "Linux" ]; then
@@ -34,22 +33,16 @@ if [ "$Machine" = "Linux" ]; then
 elif [ "$Machine" = "Darwin" ]; then
    alias ll='ls -l'
 fi
+
 alias ll='ls -lh'
 alias pd='pushd'
 alias p='popd'
 alias scrls='screen -ls'
 alias scr-ctl='screen -A -d -R'
 
-
-##################################
-#											#
-#		Cool Scripts from Randy		#
-#											#
-##################################
-alias fc='find . -name "*.c" -print0 | xargs -0 fgrep -n '
-alias fh='find . -name "*.h" -print0 | xargs -0 fgrep -n '
-alias fch='find . -name "*.[ch]" -print0 | xargs -0 fgrep -n '
-alias fcpp='find . -name "*.cpp" -print0 | xargs -0 fgrep -n '
-alias fasm='find . -iname "*.asm" -print0 | xargs -0 fgrep -n '
-alias fdsc='find . -iname "*.dsc" -print0 | xargs -0 fgrep -in '
-alias finf='find . -iname "*.inf" -print0 | xargs -0 fgrep -in '
+# path to the terraform
+if [[ "$PATH" != *"terraform"* ]]; then
+   if [ -d $HOME/terraform ]; then
+      export PATH=$PATH:$HOME/terraform;
+   fi
+fi
