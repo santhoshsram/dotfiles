@@ -46,3 +46,18 @@ if [[ "$PATH" != *"terraform"* ]]; then
       export PATH=$PATH:$HOME/terraform;
    fi
 fi
+
+# path to the otto
+if [[ "$PATH" != *"otto"* ]]; then
+   if [ -d $HOME/otto ]; then
+      export PATH=$PATH:$HOME/otto;
+   fi
+fi
+
+# add path to go if it is installed
+if [ -f /usr/local/go/bin/go ]; then
+   export PATH=$PATH:/usr/local/go/bin;
+   if [ -d $HOME/go-workspace ]; then
+      export GOPATH=$HOME/go-workspace
+   fi
+fi
