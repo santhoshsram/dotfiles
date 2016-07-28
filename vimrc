@@ -62,7 +62,7 @@ syntax on                        " Turn syntax coloring on
 """""""""""""""""""""""""""""""""""""""""""
 " Format used:
 " <truncate at beginning><file-path> <help><modified><readonly> <git branch> " <<Right indent>> <line#/total-lines,col#/virt col#>, <current pos in file>
-"set statusline=%<%f\ %h%m%r\ %{fugitive#statusline()}\ %=%-14.(%l/%L,%c%V%)\ %P
+set statusline=%<%f\ %h%m%r\ %{fugitive#statusline()}\ %=%-14.(%l/%L,%c%V%)\ %P
 
 
 """""""""""""""""""""""""""""""""""""""""""
@@ -170,7 +170,7 @@ noremap <Leader>gd :Gdiff<CR>
 """""""""""""""""""""""""""""""""""""""""""
 
 " Cleanup fugitive buffers
-"autocmd BufReadPost fugitive://* set bufhidden=delete
+autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " Set filetype on opening a file
 autocmd BufNewFile,BufRead *.h set filetype=c
