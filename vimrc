@@ -5,6 +5,8 @@
 """""""""""""""""""""""""""""""""""""""""""
 "      Pathogen Plugin Settings           "
 """""""""""""""""""""""""""""""""""""""""""
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
 
 """""""""""""""""""""""""""""""""""""""""""
 "          General Settings               "
