@@ -40,6 +40,13 @@ alias p='popd'
 alias scrls='screen -ls'
 alias scr-ctl='screen -A -d -R'
 
+# path to the packer
+if [[ "$PATH" != *"packer"* ]]; then
+   if [ -d $HOME/packer ]; then
+      export PATH=$PATH:$HOME/packer;
+   fi
+fi
+
 # path to the terraform
 if [[ "$PATH" != *"terraform"* ]]; then
    if [ -d $HOME/terraform ]; then
