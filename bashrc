@@ -68,3 +68,10 @@ if [ -f /usr/local/go/bin/go ]; then
       export GOPATH=$HOME/go-workspace
    fi
 fi
+
+# check if Mac & set path to vmware fusion
+if [ "$(uname)" == "Darwin" ]; then
+   if [ -d "/Applications/VMware Fusion.app/Contents/Library" ]; then
+      export PATH=$PATH:"/Applications/VMware Fusion.app/Contents/Library"
+   fi
+fi
