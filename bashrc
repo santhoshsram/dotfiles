@@ -40,6 +40,13 @@ alias p='popd'
 alias scrls='screen -ls'
 alias scr-ctl='screen -A -d -R'
 
+# path to $HOME/bin if it exists
+if [[ "$PATH" != *"$HOME/bin"* ]]; then
+   if [ -d $HOME/bin ]; then
+      export PATH=$PATH:$HOME/bin;
+   fi
+fi
+
 # path to the packer
 if [[ "$PATH" != *"packer"* ]]; then
    if [ -d $HOME/packer ]; then
@@ -71,7 +78,9 @@ fi
 
 # check if Mac & set path to vmware fusion
 if [ "$(uname)" == "Darwin" ]; then
-   if [ -d "/Applications/VMware Fusion.app/Contents/Library" ]; then
-      export PATH=$PATH:"/Applications/VMware Fusion.app/Contents/Library"
+   if [[ "$PATH" != *"/Applications/VMware Fusion.app/Contents/Library"* ]]; then
+      if [ -d "/Applications/VMware Fusion.app/Contents/Library" ]; then
+         export PATH=$PATH:"/Applications/VMware Fusion.app/Contents/Library"
+      fi
    fi
 fi
