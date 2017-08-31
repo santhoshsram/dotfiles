@@ -17,7 +17,7 @@ hi Todo			ctermfg=241
 hi label		ctermfg=202
 hi clear Visual
 hi Visual		term=reverse cterm=reverse
-hi cursorline   term=underline cterm=none ctermbg=235 ctermfg=none
+hi cursorline   term=underline cterm=none ctermbg=8 ctermfg=none
 hi type         term=underline cterm=none ctermbg=none ctermfg=10
 hi specialchar  term=none cterm=none ctermbg=none ctermfg=213
 hi Function     term=bold cterm=bold ctermfg=10 ctermbg=none
