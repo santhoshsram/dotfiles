@@ -50,11 +50,19 @@ set whichwrap=b,s,h,l,<,>,[,]    " Wrap cursor to move next/prev lines when at e
 set wildmenu                     " Enhanced command line completion
 set writebackup                  " Backup before overwriting, delete after writing
 
-colorscheme ron_custom           " Set the color scheme
 filetype indent on               " Intelligent auto-indent based on filetype
 filetype plugin on               " Enable filetype plugin. For CCTree.vim
 fixdel                           " Fix Del key behavior
 syntax on                        " Turn syntax coloring on
+
+"""""""""""""""""""""""""""""""""""""""""""
+"          Color Scheme                   "
+"""""""""""""""""""""""""""""""""""""""""""
+set background=dark
+let g:solarized_termcolors=256  " Use 256 colors available in the terminal
+let g:solarized_termtrans=1     " Make background work with transparent terminals (ex: mac Terminal)
+colorscheme solarized           " Set colorscheme to solarized
+
 
 
 """""""""""""""""""""""""""""""""""""""""""
