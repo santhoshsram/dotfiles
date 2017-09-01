@@ -7,6 +7,6 @@
 [submodule "vim-terraform"]
 	path = vim/bundle/vim-terraform
 	url = git@github.com:hashivim/vim-terraform.git
-[submodule "vim/bundle/vim-colors/solarized"]
-	path = vim/bundle/vim-colors/solarized
+[submodule "vim/bundle/vim-colors-solarized"]
+	path = vim/bundle/vim-colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
