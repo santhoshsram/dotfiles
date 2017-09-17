@@ -14,6 +14,7 @@
    logas = log --pretty=format:'%h %C(cyan) %s %Cblue %cn'
    logm = log --pretty=format:'%H %C(cyan) %s %Cblue %cn %n%b'
    logam = log --pretty=format:'%h %C(cyan) %s %Cblue %cn %n%b'
-   graph =  log --graph --topo-order -C -M --pretty=format:"%Cred%d%Creset %s [%ad] [%an]" --all --date=short
+   graph = log --graph --topo-order -C -M --pretty=format:"%Cred%d%Creset %s [%ad] [%an]" --all --date=short
+   graph = log --graph --topo-order --date=short --all -C -M --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white) - %an on [%ad], %ar%Creset'''
 [push]
 	default = current
