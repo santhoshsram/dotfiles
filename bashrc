@@ -47,6 +47,13 @@ if [[ "$PATH" != *"$HOME/bin"* ]]; then
    fi
 fi
 
+# path to gcloud if it exists
+if [[ "$PATH" != *"google-cloud-sdk"* ]]; then
+   if [ -d $HOME/bin/google-cloud-sdk/bin ]; then
+      export PATH=$PATH:$HOME/bin/google-cloud-sdk/bin;
+   fi
+fi
+
 # path to the packer
 if [[ "$PATH" != *"packer"* ]]; then
    if [ -d $HOME/packer ]; then
@@ -74,6 +81,11 @@ if [ -f /usr/local/go/bin/go ]; then
    if [ -d $HOME/go-workspace ]; then
       export GOPATH=$HOME/go-workspace
    fi
+fi
+
+# add path to vagrant if it is installed
+if [ -f /usr/local/bin/vagrant ]; then
+   export VAGRANT_DEFAULT_PROVIDER=virtualbox
 fi
 
 # check if Mac & set path to vmware fusion
