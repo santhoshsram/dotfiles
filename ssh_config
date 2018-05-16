@@ -15,8 +15,36 @@
 # Site-wide defaults for some commonly used options.  For a comprehensive
 # list of available options, their meanings and defaults, please see the
 # ssh_config(5) man page.
+#
 
-Host *
+
+AddKeysToAgent yes
+UseKeychain yes
+SendEnv LANG LC_*
+HashKnownHosts no
+GSSAPIAuthentication yes
+GSSAPIDelegateCredentials no
+StrictHostKeyChecking no
+UserKnownHostsFile /dev/null
+
+Host github-ao
+    Hostname github.com
+    IdentityFile ~/.ssh/id_rsa_ao
+    User santhosh-ao
+    IdentitiesOnly yes
+
+Host github.com
+    HostName github.com
+    User santhoshsram
+    IdentityFile ~/.ssh/id_rsa_santhoshsram
+    IdentitiesOnly yes
+
+Host * !github.com !github-ao
+    IdentityFile ~/.ssh/id_rsa_ao
+    IdentitiesOnly yes
+
+
+#Host *
 #   ForwardAgent no
 #   ForwardX11 no
 #   ForwardX11Trusted yes
@@ -43,12 +71,3 @@ Host *
 #   Tunnel no
 #   TunnelDevice any:any
 #   PermitLocalCommand no
-    AddKeysToAgent yes
-    UseKeychain yes
-    IdentityFile ~/.ssh/id_rsa
-    SendEnv LANG LC_*
-    HashKnownHosts no
-    GSSAPIAuthentication yes
-    GSSAPIDelegateCredentials no
-    StrictHostKeyChecking no
-    UserKnownHostsFile /dev/null
