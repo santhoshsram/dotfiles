@@ -12,7 +12,21 @@ defbce on
 
 hardstatus on
 hardstatus alwayslastline
-hardstatus string "%{.bW}%-Lw%{.rW}%n %t%{-}%+Lw %=%{..G} %H %{..Y}"
+hardstatus string "%{= bW}%-Lw%{= rW}%n %t%{-}%+Lw %=%{.G} %H"
+#
+# http://www.gnu.org/software/screen/manual/html_node/String-Escapes.html
+#
+# %{= bW}   : set colors to bright white (W) on blue (b) and keep current text styles (=)
+# %-Lw      : list windows before current window (L [optional] = "include flags")
+# %{= rW}   : for current window, set colors to bright white (W) on red (r) and keep current text styles (=)
+# %n        : window number
+# %t        : window title
+# %{-}      : restore colors to previous colors / undo last color change
+# %-Lw      : list windows after current window (L [optional] = "include flags")
+# %=        : expand to fill all space (used here to make remaining content flush right)
+# %{.G}     : set text foreground to bright green (G) and leave the background color unchanged (.)
+# %H        : hostname
+#
 
 # Turn off visual bell - and thereby annoying screen flashes
 vbell off
