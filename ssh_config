@@ -19,6 +19,7 @@
 
 
 AddKeysToAgent yes
+IgnoreUnknown UseKeychain
 UseKeychain yes
 SendEnv LANG LC_*
 HashKnownHosts no

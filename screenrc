@@ -12,7 +12,7 @@ defbce on
 
 hardstatus on
 hardstatus alwayslastline
-hardstatus string "%{= bW}%-Lw%{= rW}%n %t%{-}%+Lw %=%{.G} %H"
+hardstatus string "%{= bW}%-Lw%{= rW}%n %t%{-}%+Lw %=%{.Y}%S%{.W}@%{.G}%H"
 #
 # http://www.gnu.org/software/screen/manual/html_node/String-Escapes.html
 #
@@ -24,7 +24,11 @@ hardstatus string "%{= bW}%-Lw%{= rW}%n %t%{-}%+Lw %=%{.G} %H"
 # %{-}      : restore colors to previous colors / undo last color change
 # %-Lw      : list windows after current window (L [optional] = "include flags")
 # %=        : expand to fill all space (used here to make remaining content flush right)
+# %{.Y}     : set text foreground to bright yellow (Y) and leave the background color unchanged (.)
+# %S        : Screen session name
 # %{.G}     : set text foreground to bright green (G) and leave the background color unchanged (.)
+# %{.W}     : set text foreground to bright white (W) and leave the background color unchanged (.)
+# @         : '@'
 # %H        : hostname
 #
 
