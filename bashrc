@@ -39,6 +39,7 @@ alias pd='pushd'
 alias p='popd'
 alias scrls='screen -ls'
 alias scr-ctl='screen -A -d -R'
+alias dckr-wipe-images='docker images | awk 'NR>1 {print $3}' | xargs -L 1 -t docker rmi -f'
 
 # path to $HOME/bin if it exists
 if [[ "$PATH" != *"$HOME/bin"* ]]; then
@@ -95,4 +96,10 @@ if [ "$(uname)" == "Darwin" ]; then
          export PATH=$PATH:"/Applications/VMware Fusion.app/Contents/Library"
       fi
    fi
+fi
+
+# check if MacPorts is installed and update path accordingly
+MacPortsPath=$(which port)
+if [ $? -eq 0 ]; then
+   export PATH="$PATH:/opt/local/bin:/opt/local/sbin"
 fi
