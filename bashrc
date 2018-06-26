@@ -39,7 +39,7 @@ alias pd='pushd'
 alias p='popd'
 alias scrls='screen -ls'
 alias scr-ctl='screen -A -d -R'
-alias dckr-wipe-images='docker images | awk 'NR>1 {print $3}' | xargs -L 1 -t docker rmi -f'
+alias dckr-wipe-images="docker images | awk 'NR>1 {print $3}' | xargs -L 1 -t docker rmi -f"
 
 # path to $HOME/bin if it exists
 if [[ "$PATH" != *"$HOME/bin"* ]]; then
