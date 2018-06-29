@@ -1,6 +1,6 @@
 ##################################
 #                                #
-#      BASH Enviroment SETUP     #
+#      BASH Functions            #
 #                                #
 ##################################
 
@@ -13,6 +13,11 @@ function GIT_BRANCH_PROMPT()
    else
       echo ""
    fi
+}
+
+function DockerImagesCleanAll()
+{
+   docker images | awk 'NR>1 {print $3}' | xargs -L 1 -t docker rmi -f
 }
 
 Machine=$(uname)
@@ -39,7 +44,7 @@ alias pd='pushd'
 alias p='popd'
 alias scrls='screen -ls'
 alias scr-ctl='screen -A -d -R'
-alias dckr-wipe-images="docker images | awk 'NR>1 {print $3}' | xargs -L 1 -t docker rmi -f"
+alias docker-images-cleanall='DockerImagesCleanAll'
 
 # path to $HOME/bin if it exists
 if [[ "$PATH" != *"$HOME/bin"* ]]; then
