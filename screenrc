@@ -10,6 +10,10 @@ termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm:ti@:te@'
 # Use current bg color for erased chars
 defbce on
 
+# Unbind the lock keystroke of C-x x
+bind x
+bind ^x
+
 hardstatus on
 hardstatus alwayslastline
 hardstatus string "%{= bW}%-Lw%{= rW}%n %t%{-}%+Lw %=%{.Y}%S%{.W}@%{.G}%H"
