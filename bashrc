@@ -103,8 +103,12 @@ if [ "$(uname)" == "Darwin" ]; then
    fi
 fi
 
-# check if MacPorts is installed and update path accordingly
-MacPortsPath=$(which port)
-if [ $? -eq 0 ]; then
-   export PATH="$PATH:/opt/local/bin:/opt/local/sbin"
-fi
+##############################################
+#                                            #
+#      Python virtualenvwrapper setup        #
+#                                            #
+##############################################
+
+export WORKON_HOME=$HOME/workspace/.virtualenvs
+export PROJECT_HOME=$HOME/workspace
+source /usr/local/bin/virtualenvwrapper.sh
