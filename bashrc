@@ -109,6 +109,12 @@ fi
 #                                            #
 ##############################################
 
-export WORKON_HOME=$HOME/workspace/.virtualenvs
-export PROJECT_HOME=$HOME/workspace
-source /usr/local/bin/virtualenvwrapper.sh
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+   if [ -d $HOME/workspace/ ]; then
+      export PROJECT_HOME=$HOME/workspace
+   fi
+   if [ -d $HOME/workspace/.virtualenvs ]; then
+      export WORKON_HOME=$HOME/workspace/.virtualenvs
+   fi
+      source /usr/local/bin/virtualenvwrapper.sh
+fi
