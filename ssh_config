@@ -28,16 +28,10 @@ GSSAPIDelegateCredentials no
 StrictHostKeyChecking no
 UserKnownHostsFile /dev/null
 
-Host github-ao
-    Hostname github.com
-    IdentityFile ~/.ssh/id_rsa_ao
-    User santhosh-ao
-    IdentitiesOnly yes
-
 Host github.com
     HostName github.com
     User santhoshsram
-    IdentityFile ~/.ssh/id_rsa_santhoshsram
+    IdentityFile ~/.ssh/sundararamans-vmw
     IdentitiesOnly yes
 
 Host * !github.com !github-ao
