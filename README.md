@@ -13,7 +13,9 @@ ln -sf ~/dotfiles/screenrc ~/.screenrc
 ln -sf ~/dotfiles/ssh_config ~/.ssh/config
 ```
 
-3. Init and update the git submodules (mostly for vim pathogen). Some of the git submodule paths are SSH based and you may either need to setup SSH access to GitHub or manually update these submodule paths to their HTTPS equivalent.
+3. Update ~/dotfiles/ssh_config with the right github username and identify file.
+
+4. Init and update the git submodules (mostly for vim pathogen). Some of the git submodule paths are SSH based and you may either need to setup SSH access to GitHub or manually update these submodule paths to their HTTPS equivalent.
 ```
 cd ~/dotfiles/
 git submodule init
