@@ -22,7 +22,7 @@ function DockerImagesCleanAll()
 
 Machine=$(uname)
 
-export PS1='\[\033[01;37m[\033[01;32m\]\u@\h\[\033[01;34m\] \w`GIT_BRANCH_PROMPT`\[\033[01;37m\]]\n\$ \[\033[00m\]'
+export PS1='\[\033[01;37m\][\[\033[01;32m\]\u@\h \[\033[01;34m\]\w`GIT_BRANCH_PROMPT` \[\033[02;31m\]<\D{%F %T}>\[\033[00;37m\]\[\033[01;37m\]]\n$ \[\033[00m\]'
 export EDITOR=vim
 export TERM=xterm
 

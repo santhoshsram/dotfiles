@@ -18,3 +18,6 @@
    graph = log --graph --topo-order --date=short --all -C -M --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white) - %an on [%ad], %ar%Creset'''
 [push]
 	default = current
+[pull]
+	rebase = false
+	ff = only
