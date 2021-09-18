@@ -94,6 +94,12 @@ if [ -f /usr/local/bin/vagrant ]; then
    export VAGRANT_DEFAULT_PROVIDER=virtualbox
 fi
 
+# add path to brew if it is installed
+if [ -d /opt/homebrew/bin ]; then
+   export PATH=$PATH:/opt/homebrew/bin
+fi
+
+
 # check if Mac & set path to vmware fusion
 if [ "$(uname)" == "Darwin" ]; then
    if [[ "$PATH" != *"/Applications/VMware Fusion.app/Contents/Library"* ]]; then
