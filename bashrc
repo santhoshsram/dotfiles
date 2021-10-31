@@ -137,6 +137,7 @@ fi
 
 ## RVB - Ruby enVironment Manager
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion # Enable RVM tab suggestion
 
 ## Node - Node enVironment Manager
 export NVM_DIR="$HOME/.nvm"
