@@ -1,8 +1,3 @@
-
-#### FIG ENV VARIABLES ####
-# Please make sure this block is at the start of this file.
-[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
-#### END FIG ENV VARIABLES ####
 ##################################
 #                                #
 #      BASH Functions            #
@@ -99,12 +94,6 @@ if [ -f /usr/local/bin/vagrant ]; then
    export VAGRANT_DEFAULT_PROVIDER=virtualbox
 fi
 
-# add path to brew if it is installed
-if [ -d /opt/homebrew/bin ]; then
-   export PATH=$PATH:/opt/homebrew/bin
-fi
-
-
 # check if Mac & set path to vmware fusion
 if [ "$(uname)" == "Darwin" ]; then
    if [[ "$PATH" != *"/Applications/VMware Fusion.app/Contents/Library"* ]]; then
@@ -114,32 +103,37 @@ if [ "$(uname)" == "Darwin" ]; then
    fi
 fi
 
-##############################################
-#                                            #
-#      Python virtualenvwrapper setup        #
-#                                            #
-##############################################
-
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-   if [ -d $HOME/workspace/ ]; then
-      export PROJECT_HOME=$HOME/workspace
-   fi
-   if [ -d $HOME/workspace/.virtualenvs ]; then
-      export WORKON_HOME=$HOME/workspace/.virtualenvs
-   fi
-      source /usr/local/bin/virtualenvwrapper.sh
-fi
-
-#### FIG ENV VARIABLES ####
-# Please make sure this block is at the end of this file.
-[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
-#### END FIG ENV VARIABLES ####
-
 ## RVB - Ruby enVironment Manager
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion # Enable RVM tab suggestion
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 ## Node - Node enVironment Manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+## Enable brew autocomplete
+if type brew &>/dev/null
+then
+  HOMEBREW_PREFIX="$(brew --prefix)"
+  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]
+  then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  else
+    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
+    do
+      [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
+    done
+  fi
+fi
+
+# add path to brew if it is installed
+if [ -d /opt/homebrew/bin ]; then
+   export PATH=/opt/homebrew/bin:$PATH
+fi
+
+# add path to brew if it is installed
+if [ -d /opt/homebrew/sbin ]; then
+   export PATH=/opt/homebrew/sbin:$PATH
+fi
+
