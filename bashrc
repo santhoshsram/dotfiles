@@ -103,14 +103,24 @@ if [ "$(uname)" == "Darwin" ]; then
    fi
 fi
 
-## RVB - Ruby enVironment Manager
-[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion # Enable RVM tab suggestion
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# add path to brew if it is installed
+if [ -d /opt/homebrew/bin ]; then
+   export PATH=/opt/homebrew/bin:$PATH
+fi
+
+# add path to brew if it is installed
+if [ -d /opt/homebrew/sbin ]; then
+   export PATH=/opt/homebrew/sbin:$PATH
+fi
 
 ## Node - Node enVironment Manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+## RVB - Ruby enVironment Manager
+[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion # Enable RVM tab suggestion
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 ## Enable brew autocomplete
 if type brew &>/dev/null
@@ -125,15 +135,5 @@ then
       [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
     done
   fi
-fi
-
-# add path to brew if it is installed
-if [ -d /opt/homebrew/bin ]; then
-   export PATH=/opt/homebrew/bin:$PATH
-fi
-
-# add path to brew if it is installed
-if [ -d /opt/homebrew/sbin ]; then
-   export PATH=/opt/homebrew/sbin:$PATH
 fi
 
