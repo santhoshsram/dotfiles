@@ -9,7 +9,7 @@ function GIT_BRANCH_PROMPT()
 {
    GIT_BRANCH=$(git branch 2>/dev/null| sed -n "/^\*/s/^\* //p")
    if [[ "$GIT_BRANCH" != "" ]]; then
-      echo " ($GIT_BRANCH)"
+      echo " (git: $GIT_BRANCH)"
    else
       echo ""
    fi
@@ -22,7 +22,31 @@ function DockerImagesCleanAll()
 
 Machine=$(uname)
 
-export PS1='\[\033[01;37m\][\[\033[01;32m\]\u@\h \[\033[01;34m\]\w`GIT_BRANCH_PROMPT` \[\033[02;31m\]<\D{%F %T}>\[\033[00;37m\]\[\033[01;37m\]]\n$ \[\033[00m\]'
+## Set the bash prompt
+# Pattern for setting color -> \e[TEXTFORMAT;FGCOLORmYOURTEXT
+# To reset back to default color and format: \e[00m
+#
+# TEXTFORMATS
+#	0 - no format
+#	1 - bold
+#	2 - darken
+#	3 - italic
+#	4 - underscore
+#	5 - blink
+#	9 - strikethrough
+#
+# FG COLORS
+#	30	- black
+#	31	- red
+#	32 - green
+#	33 - yellow
+#	34 - blue
+#	35 - purple
+#	36	- cyan/blue
+#	37	- grey / white
+
+PS1='\e[1;37m[\e[0;32m\w\e \e[0;34m`GIT_BRANCH_PROMPT` \e[0;35m(\D{%e-%b-%Y %T})\e[1;37m]\e[00m\n\e[01;37m>\e[00m '
+
 export EDITOR=vim
 export TERM=xterm
 
