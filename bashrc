@@ -23,8 +23,8 @@ function DockerImagesCleanAll()
 Machine=$(uname)
 
 ## Set the bash prompt
-# Pattern for setting color -> \e[TEXTFORMAT;FGCOLORmYOURTEXT
-# To reset back to default color and format: \e[00m
+# Pattern for setting color -> \[\033[TEXTFORMAT;COLORm\]YOURTEXT
+# To reset back to default color and format: \[\033[00m\]
 #
 # TEXTFORMATS
 #	0 - no format
@@ -42,10 +42,23 @@ Machine=$(uname)
 #	33 - yellow
 #	34 - blue
 #	35 - purple
-#	36	- cyan/blue
+#	36	- cyan
 #	37	- grey / white
 
-PS1='\e[1;37m[\e[0;32m\w\e \e[0;34m`GIT_BRANCH_PROMPT` \e[0;35m(\D{%e-%b-%Y %T})\e[1;37m]\e[00m\n\e[01;37m>\e[00m '
+# Breakup of below PS1 string
+# PS1=
+#  \[\033[1;37m\][                        -  <bold><white>[
+#  \[\033[0;32m\]\w                       -  <green>path-to-current-dir
+#   \[\033[0;34m\]`GIT_BRANCH_PROMPT`     -  <space><blue>(current-git-branch)<space>
+#  \[\033[0;35m\](\D{%e-%b-%Y %T})        -  <purple>(29-Mar-2023 15:11:23)
+#  \[\033[1;37m\]]                        -  <bold><white>]
+#  \[\033[00m\]                           -  RESET to default style
+#  \n                                     -  NEWLINE
+#  \[\033[01;37m\]>                       -  <bold><white>RIGHT_ARROW1
+#  \[\033[00m\] '                         -  RESET to default style<space>
+
+PS1='\[\033[1;37m\][\[\033[0;32m\]\w \[\033[0;34m\]`GIT_BRANCH_PROMPT` \[\033[0;35m\](\D{%e-%b-%Y %T})\[\033[1;37m\]]\[\033[00m\]\n\[\033[01;37m\]>\[\033[00m\] '
+#PS1='\e[1;37m[\e[0;32m\w\e \e[0;34m`GIT_BRANCH_PROMPT` \e[0;35m(\D{%e-%b-%Y %T})\e[1;37m]\e[00m\n\e[01;37m>\e[00m '
 
 export EDITOR=vim
 export TERM=xterm
@@ -115,3 +128,4 @@ fi
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
