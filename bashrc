@@ -129,3 +129,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# Add pipx bin path to PATH env var
+# Created by `pipx` on 2023-04-03 17:40:48
+export PATH="$PATH:/Users/santhosh/.local/bin"
+
+# Enable pipx completions
+eval "$(register-python-argcomplete pipx)"
