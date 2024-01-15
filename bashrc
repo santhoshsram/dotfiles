@@ -136,3 +136,6 @@ export PATH="$PATH:/Users/santhosh/.local/bin"
 
 # Enable pipx completions
 eval "$(register-python-argcomplete pipx)"
+
+# Configure shell for rust toolchain
+. "$HOME/.cargo/env"
