@@ -82,6 +82,7 @@ alias p='popd'
 alias scrls='screen -ls'
 alias scr-ctl='screen -A -d -R'
 alias docker-images-cleanall='DockerImagesCleanAll'
+alias listen-ports='sudo lsof -i -P -n -i | grep LISTEN'
 
 # path to $HOME/bin if it exists
 if [[ "$PATH" != *"$HOME/bin"* ]]; then
