@@ -193,7 +193,8 @@ autocmd BufEnter * if &readonly | setl nomodifiable | endif
 " autocmd BufEnter *.log setl readonly nomodifiable
 
 " Don't expand tab to spaces in make and config files
-autocmd FileType make,conf setlocal noexpandtab nosmarttab
+"autocmd FileType make,conf setlocal noexpandtab nosmarttab
+autocmd FileType make setlocal noexpandtab nosmarttab
 
 " Jump to last known cursor position (if valid) on file open.
 autocmd BufReadPost *
