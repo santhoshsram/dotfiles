@@ -190,7 +190,7 @@ autocmd BufNewFile,BufRead *.c,*.h  call SetFormatting()
 
 " Don't allow modifications to readonly and log files
 autocmd BufEnter * if &readonly | setl nomodifiable | endif
-autocmd BufEnter *.log setl readonly nomodifiable
+" autocmd BufEnter *.log setl readonly nomodifiable
 
 " Don't expand tab to spaces in make and config files
 autocmd FileType make,conf setlocal noexpandtab nosmarttab
