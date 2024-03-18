@@ -1,6 +1,15 @@
 startup_message off
 defscrollback 10000
 
+# Set key bindings for moving between regions (splits)
+# For killing a window, now use Ctrl-A, K (upper case K)
+bind h focus left
+bind j focus down
+bind k focus up
+bind l focus right
+bind t focus top
+bind b focus bottom
+
 # Allow bold colors
 attrcolor b ".I"
 
