@@ -10,6 +10,9 @@ bind l focus right
 bind t focus top
 bind b focus bottom
 
+# Enable switching between regions using mouse
+mousetrack on
+
 # Allow bold colors
 attrcolor b ".I"
 
