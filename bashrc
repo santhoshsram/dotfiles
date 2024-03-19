@@ -81,7 +81,7 @@ alias pd='pushd'
 alias p='popd'
 alias scrls='screen -ls'
 alias scrctl='screen -m -A -d -R'
-alias scrjoin='screen -x'
+alias scrjoin='screen -A -x'
 alias docker-images-cleanall='DockerImagesCleanAll'
 alias listen-ports='sudo lsof -i -P -n -i | grep LISTEN'
 
