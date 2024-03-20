@@ -82,6 +82,11 @@ alias p='popd'
 alias scrls='screen -ls'
 alias scrctl='screen -m -A -d -R'
 alias scrjoin='screen -A -x'
+# tmux options
+# -A if session with same name exists attach to it, if not create it
+# -D if session is already attached to another terminal detach it there
+# -s create session with name or attach to named session
+alias tmx='tmux new -A -D -s'
 alias docker-images-cleanall='DockerImagesCleanAll'
 alias listen-ports='sudo lsof -i -P -n -i | grep LISTEN'
 
