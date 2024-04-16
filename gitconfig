@@ -10,8 +10,8 @@
    br = branch
    ls-br = show-branch --list
    opened = diff --stat
-   logs = "!f() { git log --pretty=format:'%H %C(cyan) %s %Creset [%ad] %Cblue %cn' --date=short --max-count=${1:-5}; }; f"
-   logas = "!f() { git log --pretty=format:'%h %C(cyan) %s %Cblue %cn' --max-count=${1:-5}; }; f"
+   logs = "!f() { git log --pretty=format:'%H %C(cyan) %s %Creset [%ad] %Creset [%an]' --date=short --max-count=${1:-5}; }; f"
+   logas = "!f() { git log --pretty=format:'%h %C(cyan) %s %C(yellow) [%ad] %Creset [%an]' --date=short --max-count=${1:-5}; }; f"
    logm = "!f() { git log --pretty=format:'%H %C(cyan) %s %Cblue %cn %n%b' --max-count=${1:-5}; }; f"
    logam = "!f() { git log --pretty=format:'%h %C(cyan) %s %Cblue %cn %n%b' --max-count=${1:-5}; }; f"
    graph-nosha = "!f() { git log --graph --topo-order -C -M --pretty=format:'%Cred%d%Creset %s [%ad] [%an]' --all --date=short --max-count=${1:-5}; }; f"
