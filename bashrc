@@ -144,6 +144,9 @@ export PATH="$PATH:/Users/santhosh/.local/bin"
 # Enable pipx completions
 eval "$(register-python-argcomplete pipx)"
 
+# Install pip packages only in virtual envs
+export PIP_REQUIRE_VIRTUALENV=true
+
 # Configure shell for rust toolchain
 [[ -r $HOME/.cargo/env ]] && . "$HOME/.cargo/env"
 
