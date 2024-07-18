@@ -76,7 +76,7 @@ elif [ "$Machine" = "Darwin" ]; then
    alias ll='ls -l'
 fi
 
-alias ll='ls -lh'
+alias ll='ls -ltrhF'
 alias pd='pushd'
 alias p='popd'
 alias scrls='screen -ls'
@@ -106,6 +106,22 @@ fi
 if [ -d /opt/homebrew/sbin ]; then
    export PATH=/opt/homebrew/sbin:$PATH
 fi
+
+## Some modifications to persist bash history across tmux sessions
+
+# Make sure bash history is persisted
+# across sessions and not overwritten
+shopt -s histappend
+
+# Save history after each command
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+# Increase the size of the history file
+export HISTFILESIZE=10000
+export HISTSIZE=5000
+
+# Avoid duplicate entries
+export HISTCONTROL=ignoredups:erasedups
 
 ## Node - Node enVironment Manager
 export NVM_DIR="$HOME/.nvm"
