@@ -16,8 +16,11 @@
    logam = "!f() { git log --pretty=format:'%h %C(cyan) %s %Cblue %cn %n%b' --max-count=${1:-5}; }; f"
    graph-nosha = "!f() { git log --graph --topo-order -C -M --pretty=format:'%Cred%d%Creset %s [%ad] [%an]' --all --date=short --max-count=${1:-5}; }; f"
    graph = "!f() { git log --graph --topo-order --date=short --all -C -M --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white) - %an on [%ad], %ar%Creset''' --max-count=${1:-5}; }; f"
+	deleted-branches = !git fetch --all --prune && git branch -vv | grep \": gone]\"
 [push]
 	default = current
 [pull]
 	rebase = false
 	ff = only
+[init]
+	defaultBranch = main
