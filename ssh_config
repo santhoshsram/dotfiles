@@ -18,7 +18,7 @@
 #
 
 
-AddKeysToAgent yes
+#AddKeysToAgent yes
 IgnoreUnknown UseKeychain
 UseKeychain yes
 SendEnv LANG LC_*
@@ -27,6 +27,7 @@ GSSAPIAuthentication yes
 GSSAPIDelegateCredentials no
 StrictHostKeyChecking no
 UserKnownHostsFile /dev/null
+ServerAliveInterval 20
 
 # Host github.com
 #    HostName github.com
