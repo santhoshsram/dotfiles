@@ -239,3 +239,12 @@ cnoreabbrev hcsg scs f g
 cnoreabbrev hcss scs f s
 cnoreabbrev hcsc scs f c
 cnoreabbrev hcsf scs f f
+
+" Set cursor shape depending on mode
+if exists('$TERM') && &term =~ 'xterm'
+  set ttimeout
+  set ttimeoutlen=100
+  let &t_SI = "\e[6 q"   " Insert mode: vertical bar
+  let &t_EI = "\e[2 q"   " Normal/other modes: block
+endif
+
