@@ -9,7 +9,7 @@ function GIT_BRANCH_PROMPT()
 {
    GIT_BRANCH=$(git branch 2>/dev/null| sed -n "/^\*/s/^\* //p")
    if [[ "$GIT_BRANCH" != "" ]]; then
-      echo " (git: $GIT_BRANCH)"
+      echo " /  $GIT_BRANCH /"
    else
       echo ""
    fi
@@ -169,3 +169,12 @@ export PIP_REQUIRE_VIRTUALENV=true
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# If a ~/.env.secrets exist source it
+# Using dot notation (equivalent to source)
+if [ -f ~/.env.secrets ]; then
+   . ~/.env.secrets
+fi
+
+# Switch bash to vi/vim mode from emacs mode
+set -o vi
