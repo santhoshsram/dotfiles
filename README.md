@@ -16,9 +16,23 @@ ln -sf ~/dotfiles/ssh_config ~/.ssh/config
 
 3. Update ~/dotfiles/ssh_config with the right github username and identify file.
 
-4. Init and update the git submodules (mostly for vim pathogen). Some of the git submodule paths are SSH based and you may either need to setup SSH access to GitHub or manually update these submodule paths to their HTTPS equivalent.
-```
-cd ~/dotfiles/
-git submodule init
-git submodule update
+4. Install vim plugins using native package management (Vim 8+). The vim configuration uses native package management instead of pathogen. Plugins installed in `~/.vim/pack/plugins/start/` will be automatically loaded by vim.
+```bash
+# Create the native package directory structure
+mkdir -p ~/.vim/pack/plugins/start
+
+# Install plugins
+cd ~/.vim/pack/plugins/start
+
+# Install catppuccin theme
+git clone https://github.com/catppuccin/vim.git catppuccin
+
+# Install lightline for status bar
+git clone https://github.com/itchyny/lightline.vim.git
+
+# Install fugitive for git integration
+git clone https://github.com/tpope/vim-fugitive.git
+
+# Optional: Install other plugins as needed
+# git clone https://github.com/plugin-author/plugin-name.git
 ```

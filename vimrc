@@ -3,12 +3,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""
-"      Pathogen Plugin Settings           "
-"""""""""""""""""""""""""""""""""""""""""""
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
-
-"""""""""""""""""""""""""""""""""""""""""""
 "          General Settings               "
 """""""""""""""""""""""""""""""""""""""""""
 set autoindent                   " Always set autoindenting on
@@ -56,21 +50,48 @@ fixdel                           " Fix Del key behavior
 syntax on                        " Turn syntax coloring on
 
 """""""""""""""""""""""""""""""""""""""""""
+"   Status Line: Lightline Settings       "
+"""""""""""""""""""""""""""""""""""""""""""
+let g:lightline = {
+  \ 'colorscheme': 'catppuccin_mocha',
+  \ 'separator': { 'left': '', 'right': '' },
+  \ 'subseparator': { 'left': '', 'right': '' },
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+  \   'right': [ [ 'linepos', 'linetotalcount' ],
+  \              [ 'percent' ],
+  \              [ 'fileencoding', 'filetype' ]]
+  \ },
+  \ 'component_function': {
+  \   'linepos': 'LightlineLinePos',
+  \   'linetotalcount': 'LightlineTotalLines',
+  \   'gitbranch': 'LightlineGitBranch'
+  \ },
+  \ }
+
+function! LightlineGitBranch()
+  let branch = FugitiveHead()
+  return branch !=# '' ? '' . branch : ''
+endfunction
+
+function! LightlineLinePos()
+  return printf('%d:%d', col('.'), line('.'))
+endfunction
+
+function! LightlineTotalLines()
+  return printf('☰ %d', line('$'))
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""
 "          Color Scheme                   "
 """""""""""""""""""""""""""""""""""""""""""
+" Enable true colors for catppuccin
+if has('termguicolors')
+  set termguicolors
+endif
 set background=dark
-let g:solarized_termcolors=256  " Use 256 colors available in the terminal
-let g:solarized_termtrans=1     " Make background work with transparent terminals (ex: mac Terminal)
-colorscheme solarized           " Set colorscheme to solarized
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""
-"          Status Line                    "
-"""""""""""""""""""""""""""""""""""""""""""
-" Format used:
-" <truncate at beginning><file-path> <help><modified><readonly> <git branch> " <<Right indent>> <line#/total-lines,col#/virt col#>, <current pos in file>
-set statusline=%<%f\ %h%m%r\ %{fugitive#statusline()}\ %=%-14.(%l/%L,%c%V%)\ %P
+colorscheme catppuccin_mocha
 
 
 """""""""""""""""""""""""""""""""""""""""""
@@ -95,6 +116,14 @@ let g:showmarks_textupper=">"
 """""""""""""""""""""""""""""""""""""""""""
 "          Highlight Groups               "
 """""""""""""""""""""""""""""""""""""""""""
+" Remove bold from other common highlights
+highlight MatchParen gui=NONE cterm=NONE  " Matching parentheses
+highlight Visual gui=NONE cterm=NONE      " Visual selection
+
+" Keep catppuccin colors but remove bold from search highlights
+highlight Search gui=NONE cterm=NONE
+highlight IncSearch gui=NONE cterm=NONE
+
 " Colors for showmarks plugin
 highlight default ShowMarksHLl ctermfg=0 ctermbg=250 cterm=bold
 highlight default ShowMarksHLu ctermfg=0 ctermbg=250 cterm=bold
