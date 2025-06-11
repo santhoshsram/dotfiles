@@ -1,0 +1,13 @@
+font-size = 17
+font-family = "SauceCodePro NF Medium"
+font-family-bold = "SauceCodePro NF SemiBold"
+font-family-italic = "SauceCodePro NF Medium Italic"
+font-family-bold-italic = "SauceCodePro NF SemiBold Italic"
+theme = catppuccin-macchiato
+cursor-style-blink = false
+cursor-style = block
+shell-integration-features = no-cursor
+window-width = 130
+window-height = 35
+cursor-color = #d8c6c2
+cursor-text = #15171a
