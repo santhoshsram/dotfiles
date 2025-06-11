@@ -38,7 +38,7 @@ set splitright                   " Show the cscope search result on the right
                                  " for vertical splits
 set t_Co=256                     " Enable 256 color support
 set tabstop=3                    " Set tab to 3 spaces
-set textwidth=79                 " Break lines longer than 79 chars
+set textwidth=140                " Break lines longer than 79 chars
 set visualbell t_vb=             " Don't flash screen on errors
 set whichwrap=b,s,h,l,<,>,[,]    " Wrap cursor to move next/prev lines when at end/beginning of a line
 set wildmenu                     " Enhanced command line completion
@@ -48,6 +48,8 @@ filetype indent on               " Intelligent auto-indent based on filetype
 filetype plugin on               " Enable filetype plugin. For CCTree.vim
 fixdel                           " Fix Del key behavior
 syntax on                        " Turn syntax coloring on
+set number                       " Show line numbers
+set relativenumber               " Show relative line numbers. Absolute line number is shown for current line.
 
 """""""""""""""""""""""""""""""""""""""""""
 "   Status Line: Lightline Settings       "
