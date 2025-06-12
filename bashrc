@@ -57,7 +57,7 @@ Machine=$(uname)
 #  \[\033[01;37m\]>                       -  <bold><white>RIGHT_ARROW1
 #  \[\033[00m\] '                         -  RESET to default style<space>
 
-PS1='\[\033[1;37m\][\[\033[0;32m\]\w \[\033[0;36m\]`GIT_BRANCH_PROMPT` \[\033[0;35m\](\D{%d-%b-%Y %T})\[\033[1;37m\]]\[\033[00m\]\n\[\033[01;37m\]>\[\033[00m\] '
+PS1='\[\033[1;37m\][\[\033[0;32m\]\w \[\033[0;36m\]`GIT_BRANCH_PROMPT` \[\033[0;35m\](\D{%d-%b-%Y %T})\[\033[1;37m\] (mode: vim)]\[\033[00m\]\n\[\033[01;37m\]>\[\033[00m\] '
 #PS1='\e[1;37m[\e[0;32m\w\e \e[0;34m`GIT_BRANCH_PROMPT` \e[0;35m(\D{%e-%b-%Y %T})\e[1;37m]\e[00m\n\e[01;37m>\e[00m '
 
 export EDITOR=vim
@@ -178,3 +178,6 @@ fi
 
 # Switch bash to vi/vim mode from emacs mode
 set -o vi
+# Key bindings for Ctrl-L to clear screen like in emacs mode
+bind -m vi-insert '"\C-l": clear-screen'
+bind -m vi-command '"\C-l": clear-screen'
