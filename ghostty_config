@@ -11,3 +11,4 @@ window-width = 130
 window-height = 35
 cursor-color = #d8c6c2
 cursor-text = #15171a
+copy-on-select = clipboard
