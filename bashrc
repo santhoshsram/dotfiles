@@ -181,3 +181,16 @@ set -o vi
 # Key bindings for Ctrl-L to clear screen like in emacs mode
 bind -m vi-insert '"\C-l": clear-screen'
 bind -m vi-command '"\C-l": clear-screen'
+
+# Workaround to get neovim python-provider working with pyenv
+function nvimvenv {
+  if [[ -e "$VIRTUAL_ENV" && -f "$VIRTUAL_ENV/bin/activate" ]]; then
+    source "$VIRTUAL_ENV/bin/activate"
+    command nvim "$@"
+    deactivate
+  else
+    command nvim "$@"
+  fi
+}
+
+alias nvim=nvimvenv
