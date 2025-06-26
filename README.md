@@ -6,6 +6,7 @@ git clone git@github.com:santhoshsram/dotfiles.git ~/dotfiles
 2. Execute below to create right folders and setup symlinks
 ```
 ln -sf ~/dotfiles/bashrc ~/.bashrc
+ln -sf ~/dotfiles/bash_profile ~/.bash_profile
 ln -sf ~/dotfiles/vim ~/.vim
 ln -sf ~/dotfiles/vimrc ~/.vimrc
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig

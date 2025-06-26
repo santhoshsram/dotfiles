@@ -178,9 +178,16 @@ fi
 
 # Switch bash to vi/vim mode from emacs mode
 set -o vi
+
+# Turn off tty‐special‐chars so our C‐w ↦ unix‐word‐rubout sticks
+bind 'set bind-tty-special-chars off'
+
 # Key bindings for Ctrl-L to clear screen like in emacs mode
 bind -m vi-insert '"\C-l": clear-screen'
 bind -m vi-command '"\C-l": clear-screen'
+
+# Bind C-w to delete like in vim and not do weird things in bash shell
+bind -m vi-insert '"\C-w": unix-word-rubout'
 
 # Workaround to get neovim python-provider working with pyenv
 function nvimvenv {
