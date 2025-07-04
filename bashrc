@@ -201,3 +201,5 @@ function nvimvenv {
 }
 
 alias nvim=nvimvenv
+export PATH="/Users/santhosh/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="/Users/santhosh/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
