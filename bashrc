@@ -203,3 +203,10 @@ function nvimvenv {
 alias nvim=nvimvenv
 export PATH="/Users/santhosh/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/Users/santhosh/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+
+# For Bash installed via Homebrew
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+if [[ -f $(brew --prefix)/opt/fzf/shell/key-bindings.bash ]]; then
+  source "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
+fi
+

@@ -32,3 +32,21 @@ git clone https://github.com/tpope/vim-fugitive.git
 ```
 
 3. Update ~/dotfiles/ssh_config with the right github username and identify file.
+
+4. Bash history searchusing fzf
+```
+# First install bash via homebrew. Default macOS bash is very old/
+brew install bash
+
+# Add new bash to allowed shells
+sudo sh -c 'echo "$(brew --prefix)/bin/bash" >> /etc/shells'
+
+# Change default shell to new bash
+chsh -s "$(brew --prefix)/bin/bash"
+
+# Install fzf
+brew install fzf
+
+# Install fzf keybindings and autocomplete
+$(brew --prefix)/opt/fzf/install
+```
