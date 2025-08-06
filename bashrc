@@ -76,7 +76,7 @@ elif [ "$Machine" = "Darwin" ]; then
    alias ll='ls -l'
 fi
 
-alias ll='ls -ltrhF'
+alias ll='echo "Running: ls -ltrhF"; ls -ltrhF'
 alias pd='pushd'
 alias p='popd'
 alias scrls='screen -ls'
@@ -86,13 +86,13 @@ alias scrjoin='screen -A -x'
 # -A if session with same name exists attach to it, if not create it
 # -D if session is already attached to another terminal detach it there
 # -s create session with name or attach to named session
-alias tmx='tmux new -A -D -s'
+alias tmx='echo "Running: tmux new -A -D -s"; tmux new -A -D -s'
 alias docker-images-cleanall='DockerImagesCleanAll'
-alias listen-ports='sudo lsof -i -P -n -i | grep LISTEN'
-alias tf='terraform'
-alias tfo="terraform output -json | jq 'keys[]'"
-alias tfp='terraform plan'
-alias tfps='terraform plan -no-color | grep -E "^  # |^Plan:"'
+alias listen-ports='echo "Running: sudo lsof -i -P -n -i | grep LISTEN"; sudo lsof -i -P -n -i | grep LISTEN'
+alias tf='f(){ echo "Running: terraform $*"; terraform "$@"; }; f'
+alias tfo="echo \"Running: terraform output -json | jq 'keys[]'\"; terraform output -json | jq 'keys[]'"
+alias tfp='echo "Running: terraform plan"; terraform plan'
+alias tfps='echo "Running: terraform plan -no-color | grep -E \"^  # |^Plan:\""; terraform plan -no-color | grep -E "^  # |^Plan:"'
 
 # path to $HOME/bin if it exists
 if [[ "$PATH" != *"$HOME/bin"* ]]; then
