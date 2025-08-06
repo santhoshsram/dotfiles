@@ -91,6 +91,8 @@ alias docker-images-cleanall='DockerImagesCleanAll'
 alias listen-ports='sudo lsof -i -P -n -i | grep LISTEN'
 alias tf='terraform'
 alias tfo="terraform output -json | jq 'keys[]'"
+alias tfp='terraform plan'
+alias tfps='terraform plan -no-color | grep -E "^  # |^Plan:"'
 
 # path to $HOME/bin if it exists
 if [[ "$PATH" != *"$HOME/bin"* ]]; then
