@@ -89,6 +89,8 @@ alias scrjoin='screen -A -x'
 alias tmx='tmux new -A -D -s'
 alias docker-images-cleanall='DockerImagesCleanAll'
 alias listen-ports='sudo lsof -i -P -n -i | grep LISTEN'
+alias tf='terraform'
+alias tfo="terraform output -json | jq 'keys[]'"
 
 # path to $HOME/bin if it exists
 if [[ "$PATH" != *"$HOME/bin"* ]]; then
