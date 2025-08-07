@@ -15,6 +15,16 @@ function GIT_BRANCH_PROMPT()
    fi
 }
 
+function KUBECTL_CONTEXT_PROMPT()
+{
+   KUBECTL_CONTEXT=$(kubectl config current-context 2>/dev/null)
+   if [[ "$KUBECTL_CONTEXT" != "" ]]; then
+      echo " 󱃾 $KUBECTL_CONTEXT"
+   else
+      echo ""
+   fi
+}
+
 function DockerImagesCleanAll()
 {
    docker images | awk 'NR>1 {print $3}' | xargs -L 1 -t docker rmi -f
@@ -57,7 +67,7 @@ Machine=$(uname)
 #  \[\033[01;37m\]>                       -  <bold><white>RIGHT_ARROW1
 #  \[\033[00m\] '                         -  RESET to default style<space>
 
-PS1='\[\033[1;37m\][\[\033[0;32m\]\w \[\033[0;36m\]`GIT_BRANCH_PROMPT` \[\033[0;35m\](\D{%d-%b-%Y %T})\[\033[1;37m\] (mode: vim)]\[\033[00m\]\n\[\033[01;37m\]>\[\033[00m\] '
+PS1='\[\033[1;37m\][\[\033[0;32m\]\w \[\033[0;36m\]`GIT_BRANCH_PROMPT`\[\033[0;34m\]`KUBECTL_CONTEXT_PROMPT` \[\033[0;35m\](\D{%d-%b-%Y %T})\[\033[1;37m\] (mode: vim)]\[\033[00m\]\n\[\033[01;37m\]>\[\033[00m\] '
 #PS1='\e[1;37m[\e[0;32m\w\e \e[0;34m`GIT_BRANCH_PROMPT` \e[0;35m(\D{%e-%b-%Y %T})\e[1;37m]\e[00m\n\e[01;37m>\e[00m '
 
 export EDITOR=vim
