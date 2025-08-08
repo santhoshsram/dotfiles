@@ -224,3 +224,5 @@ if [[ -f $(brew --prefix)/opt/fzf/shell/key-bindings.bash ]]; then
   source "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
 fi
 
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"
