@@ -8,6 +8,9 @@
 [alias]
    co = checkout
    br = branch
+   wtl = worktree list
+   wta = worktree add
+   wtr = worktree remove
    ls-br = show-branch --list
    opened = diff --stat
    logs = "!f() { git log --pretty=format:'%H %C(cyan) %s %Creset [%ad] %Creset [%an]' --date=short --max-count=${1:-5}; }; f"
