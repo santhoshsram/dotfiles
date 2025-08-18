@@ -6,6 +6,10 @@
 [core]
 	editor = vim
 [alias]
+   a = add
+   s = status
+   d = diff
+   cm = commit
    co = checkout
    br = branch
    wtl = worktree list
