@@ -12,8 +12,9 @@
    cm = commit
    co = checkout
    br = branch
-   wtl = worktree list
    wta = worktree add
+   wtl = worktree list
+   wtm = worktree move
    wtr = worktree remove
    ls-br = show-branch --list
    opened = diff --stat
