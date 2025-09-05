@@ -104,6 +104,8 @@ alias k='f(){ echo "Running: kubectl $*"; kubectl "$@"; }; f'
 alias tfo="echo \"Running: terraform output -json | jq 'keys[]'\"; terraform output -json | jq 'keys[]'"
 alias tfp='echo "Running: terraform plan"; terraform plan'
 alias tfps='echo "Running: terraform plan -no-color | grep -E \"^  # |^Plan:\""; terraform plan -no-color | grep -E "^  # |^Plan:"'
+alias tfo="echo \"Running: terraform output -json | jq 'keys[]'\"; terraform output -json | jq 'keys[]'"
+alias tfv='echo "Running: terraform validate"; terraform validate'
 
 # path to $HOME/bin if it exists
 if [[ "$PATH" != *"$HOME/bin"* ]]; then
