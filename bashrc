@@ -100,6 +100,7 @@ alias tmx='echo "Running: tmux new -A -D -s"; tmux new -A -D -s'
 alias docker-images-cleanall='DockerImagesCleanAll'
 alias listen-ports='echo "Running: sudo lsof -i -P -n -i | grep LISTEN"; sudo lsof -i -P -n -i | grep LISTEN'
 alias tf='f(){ echo "Running: terraform $*"; terraform "$@"; }; f'
+alias k='f(){ echo "Running: kubectl $*"; kubectl "$@"; }; f'
 alias tfo="echo \"Running: terraform output -json | jq 'keys[]'\"; terraform output -json | jq 'keys[]'"
 alias tfp='echo "Running: terraform plan"; terraform plan'
 alias tfps='echo "Running: terraform plan -no-color | grep -E \"^  # |^Plan:\""; terraform plan -no-color | grep -E "^  # |^Plan:"'
