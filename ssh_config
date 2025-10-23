@@ -17,6 +17,8 @@
 # ssh_config(5) man page.
 #
 
+# Include host-specific configurations
+Include ~/.ssh/ssh_hosts_confi[g]
 
 #AddKeysToAgent yes
 IgnoreUnknown UseKeychain
@@ -29,11 +31,17 @@ StrictHostKeyChecking no
 UserKnownHostsFile /dev/null
 ServerAliveInterval 20
 
-# Host github.com
-#    HostName github.com
-#    User <github-username>
-#    IdentityFile <path-to-identify-file>
-#    IdentitiesOnly yes
+Host github.com
+    HostName github.com
+    User santhoshsram
+    IdentityFile ~/.ssh/id_ed25519
+    IdentitiesOnly yes
+
+Host hf.co
+    HostName hf.co
+    User s18n
+    IdentityFile ~/.ssh/id_ed25519_hf
+    IdentitiesOnly yes
 
 #Host *
 #   ForwardAgent no

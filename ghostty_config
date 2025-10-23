@@ -3,7 +3,7 @@ font-family = "SauceCodePro NF Medium"
 font-family-bold = "SauceCodePro NF SemiBold"
 font-family-italic = "SauceCodePro NF Medium Italic"
 font-family-bold-italic = "SauceCodePro NF SemiBold Italic"
-theme = catppuccin-macchiato
+theme = Catppuccin Macchiato
 cursor-style-blink = false
 cursor-style = block
 shell-integration-features = no-cursor
@@ -12,3 +12,4 @@ window-height = 35
 cursor-color = #d8c6c2
 cursor-text = #15171a
 copy-on-select = clipboard
+keybind = shift+enter=text:\x1b\r
