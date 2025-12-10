@@ -5,7 +5,7 @@ Kubernetes Aliases:
   k <cmd>     - kubectl (any command)
   kgns        - get namespaces
   kgn         - get nodes
-  kgnd        - get nodes (detailed: name, status, capacity, max_pods)
+  kgnd        - get nodes (detailed: name, status, max_pods)
   kgp         - get pods
   kgpa        - get pods (all namespaces)
   kgs         - get services
@@ -26,7 +26,7 @@ alias k='f(){ echo "Running: kubectl $*"; kubectl "$@"; }; f'
 # get resources
 alias kgns='echo "Running: kubectl get namespaces"; kubectl get namespaces'
 alias kgn='echo "Running: kubectl get nodes"; kubectl get nodes'
-alias kgnd='echo "Running: kubectl get nodes -o custom-columns=NAME:.metadata.name,STATUS:.status.conditions[-1].type,CAPACITY:.status.capacity.pods,MAX_PODS:.status.capacity.pods"; kubectl get nodes -o custom-columns="NAME:.metadata.name,STATUS:.status.conditions[-1].type,CAPACITY:.status.capacity.pods,MAX_PODS:.status.capacity.pods"'
+alias kgnd='echo "Running: kubectl get nodes -o custom-columns=NAME:.metadata.name,STATUS:.status.conditions[-1].type,MAX_PODS:.status.capacity.pods"; kubectl get nodes -o custom-columns="NAME:.metadata.name,STATUS:.status.conditions[-1].type,MAX_PODS:.status.capacity.pods"'
 alias kgp='echo "Running: kubectl get pods"; kubectl get pods'
 alias kgpa='echo "Running: kubectl get pods --all-namespaces"; kubectl get pods --all-namespaces'
 alias kgs='echo "Running: kubectl get services"; kubectl get services'
