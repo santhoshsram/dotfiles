@@ -1,5 +1,26 @@
 # Kubernetes Aliases
 
+alias khelp='echo "
+Kubernetes Aliases:
+  k <cmd>     - kubectl (any command)
+  kgns        - get namespaces
+  kgn         - get nodes
+  kgnd        - get nodes (detailed: name, status, capacity, max_pods)
+  kgp         - get pods
+  kgpa        - get pods (all namespaces)
+  kgs         - get services
+  kgd         - get deployments
+  ktn         - top nodes
+  ktp         - top pods
+  ktpa        - top pods (all namespaces)
+  kdp <pod>   - describe pod
+  kdn <node>  - describe node
+  kl <pod>    - logs
+  klf <pod>   - logs (follow)
+  kctx        - current context
+  kctxs       - list contexts
+"'
+
 alias k='f(){ echo "Running: kubectl $*"; kubectl "$@"; }; f'
 
 # get resources
