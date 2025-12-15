@@ -48,3 +48,4 @@ alias klf='f(){ echo "Running: kubectl logs -f $*"; kubectl logs -f "$@"; }; f'
 # context and config
 alias kctx='echo "Running: kubectl config current-context"; kubectl config current-context'
 alias kctxs='echo "Running: kubectl config get-contexts"; kubectl config get-contexts'
+alias kclearctx='echo "Running: kubectl config unset current-context"; kubectl config unset current-context'
