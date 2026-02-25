@@ -1,2 +1,4 @@
 *.netrwhist*
 *.swp
+.DS_Store
+vim/.vim/pack/
