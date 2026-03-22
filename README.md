@@ -27,7 +27,26 @@ git clone https://github.com/tpope/vim-fugitive.git
 
 5. Update `~/dotfiles/ssh/.ssh/config` with the right github username and identity file.
 
-6. Bash history search using fzf
+6. Set up tmux plugins.
+
+Install TPM (Tmux Plugin Manager):
+```
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+Install the Nerd Font used by the tmux status bar (SauceCodePro NF):
+```
+brew install --cask font-sauce-code-pro-nerd-font
+```
+
+If any icons or glyphs don't render correctly, also install Commit Mono Nerd Font:
+```
+brew install --cask font-commit-mono-nerd-font
+```
+
+Start a new tmux session, then press `Ctrl+Space I` (Prefix + I) to install all plugins.
+
+7. Bash history search using fzf
 ```
 # First install bash via homebrew. Default macOS bash is very old.
 brew install bash
