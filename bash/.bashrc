@@ -71,7 +71,7 @@ PS1='\[\033[1;37m\][\[\033[0;32m\]\w \[\033[0;36m\]`GIT_BRANCH_PROMPT`\[\033[0;3
 #PS1='\e[1;37m[\e[0;32m\w\e \e[0;34m`GIT_BRANCH_PROMPT` \e[0;35m(\D{%e-%b-%Y %T})\e[1;37m]\e[00m\n\e[01;37m>\e[00m '
 
 export EDITOR=vim
-export TERM=xterm
+# export TERM=xterm  # commented out — was overriding Ghostty's TERM=ghostty
 
 # Source all configuration files from ~/.bashrc.d/
 if [ -d ~/.bashrc.d ]; then
@@ -202,3 +202,10 @@ fi
 
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/santhosh/.lmstudio/bin"
+# End of LM Studio CLI section
+
+# Added by Antigravity
+export PATH="/Users/santhosh/.antigravity/antigravity/bin:$PATH"
