@@ -34,9 +34,16 @@ Install TPM (Tmux Plugin Manager):
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-Install the Nerd Font used by the tmux status bar (SauceCodePro NF):
+Install the Nerd Fonts
 ```
+# JetBrains Mono NF
+brew install --cask font-jetbrains-mono-nerd-font
+
+# SauceCodePro NF
 brew install --cask font-sauce-code-pro-nerd-font
+
+# Maple Mono NF
+brew install --cask font-maple-mono-nf
 ```
 
 If any icons or glyphs don't render correctly, also install Commit Mono Nerd Font:

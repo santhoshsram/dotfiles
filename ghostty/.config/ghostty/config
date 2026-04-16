@@ -1,8 +1,13 @@
 font-size = 17
 font-family = "SauceCodePro NF Medium"
+font-family = "Apple Color Emoji"
 font-family-bold = "SauceCodePro NF SemiBold"
+font-family-bold = "Apple Color Emoji"
 font-family-italic = "SauceCodePro NF Medium Italic"
+font-family-italic = "Apple Color Emoji"
 font-family-bold-italic = "SauceCodePro NF SemiBold Italic"
+font-family-bold-italic = "Apple Color Emoji"
+font-codepoint-map = U+1F916=Apple Color Emoji
 theme = Catppuccin Macchiato
 cursor-style-blink = false
 cursor-style = block
