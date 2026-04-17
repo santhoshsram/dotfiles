@@ -11,7 +11,7 @@ brew install stow
 3. Set up symlinks using stow
 ```
 cd ~/dotfiles
-stow bash git vim nvim ghostty tmux screen ssh
+stow bash git vim nvim ghostty tmux screen ssh claude
 ```
 
 Note: `~/.ssh/` must exist before stowing ssh (`mkdir -p ~/.ssh && chmod 700 ~/.ssh`).
@@ -53,7 +53,18 @@ brew install --cask font-commit-mono-nerd-font
 
 Start a new tmux session, then press `Ctrl+Space I` (Prefix + I) to install all plugins.
 
-7. Bash history search using fzf
+7. Claude Code statusline
+
+The `claude` package installs a statusline script for Claude Code (`~/.claude/statusline-command.sh`).
+After stowing, point Claude Code to it by adding the following to `~/.claude/settings.json`:
+```json
+"statusLine": {
+  "type": "command",
+  "command": "bash ~/.claude/statusline-command.sh"
+}
+```
+
+8. Bash history search using fzf
 ```
 # First install bash via homebrew. Default macOS bash is very old.
 brew install bash
