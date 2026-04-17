@@ -14,7 +14,7 @@ elif git_branch_raw=$(GIT_OPTIONAL_LOCKS=0 git -C "$cwd" rev-parse --short HEAD 
 fi
 
 # Session duration: use total_duration_ms from cost object
-duration_ms=$(echo "$input" | jq -r '.cost.total_duration_ms // empty')
+duration_ms=$(echo "$input" | jq -r '.cost.total_api_duration_ms // empty')
 duration_str=""
 if [ -n "$duration_ms" ] && [ "$duration_ms" -gt 0 ] 2>/dev/null; then
   elapsed=$(( duration_ms / 1000 ))
