@@ -39,23 +39,43 @@ else
   cost="0.00"
 fi
 
-# Context window usage: visual progress bar (10 blocks wide)
+# Context window usage: visual progress bar (10 circles wide)
 used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
 if [ -n "$used_pct" ]; then
   used_int=$(printf "%.0f" "$used_pct")
   filled=$(( used_int / 10 ))
   empty_blocks=$(( 10 - filled ))
   bar=""
-  for i in $(seq 1 $filled); do bar="${bar}█"; done
-  for i in $(seq 1 $empty_blocks); do bar="${bar}░"; done
-  context_str="${bar} ${used_int}%"
+  for i in $(seq 1 $filled); do bar="${bar}●"; done
+  for i in $(seq 1 $empty_blocks); do bar="${bar}○"; done
+  context_str="📖 ${bar} ${used_int}%"
 else
   context_str=""
 fi
 
+# Rate limit (5-hour window): battery with circular progress bar
+rate_limit_pct=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
+rate_limit_str=""
+if [ -n "$rate_limit_pct" ]; then
+  rate_int=$(printf "%.0f" "$rate_limit_pct")
+  filled=$(( rate_int / 10 ))
+  empty_blocks=$(( 10 - filled ))
+  bar=""
+  for i in $(seq 1 $filled); do bar="${bar}●"; done
+  for i in $(seq 1 $empty_blocks); do bar="${bar}○"; done
+  rate_limit_str="🔋 ${bar} ${rate_int}% (5h usage)"
+fi
+
 parts="🧠 ${model}"
 [ -n "$duration_str" ] && parts="${parts} | ⏱️ ${duration_str}"
-parts="${parts} | \$${cost}"
+
+# Show cost for API key users, rate limit for Max plan users
+if [ "$cost" != "0.00" ]; then
+  parts="${parts} | \$${cost}"
+else
+  [ -n "$rate_limit_str" ] && parts="${parts} | ${rate_limit_str}"
+fi
+
 [ -n "$context_str" ] && parts="${parts} | ${context_str}"
 parts="${parts} | 📂 ${folder}"
 [ -n "$git_branch" ] && parts="${parts} | 🌿 ${git_branch}"
