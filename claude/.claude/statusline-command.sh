@@ -31,14 +31,6 @@ if [ -n "$duration_ms" ] && [ "$duration_ms" -gt 0 ] 2>/dev/null; then
   fi
 fi
 
-# Total cost: use the pre-calculated cost from Claude Code
-cost_raw=$(echo "$input" | jq -r '.cost.total_cost_usd // empty')
-if [ -n "$cost_raw" ]; then
-  cost=$(printf "%.2f" "$cost_raw")
-else
-  cost="0.00"
-fi
-
 # Context window usage: visual progress bar (10 circles wide)
 used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
 if [ -n "$used_pct" ]; then
@@ -69,12 +61,8 @@ fi
 parts="🧠 ${model}"
 [ -n "$duration_str" ] && parts="${parts} | ⏱️ ${duration_str}"
 
-# Show cost for API key users, rate limit for Max plan users
-if [ "$cost" != "0.00" ]; then
-  parts="${parts} | \$${cost}"
-else
-  [ -n "$rate_limit_str" ] && parts="${parts} | ${rate_limit_str}"
-fi
+# Always show rate limit (Max plan — no per-token billing)
+[ -n "$rate_limit_str" ] && parts="${parts} | ${rate_limit_str}"
 
 [ -n "$context_str" ] && parts="${parts} | ${context_str}"
 parts="${parts} | 📂 ${folder}"
