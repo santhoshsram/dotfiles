@@ -24,7 +24,7 @@ alias scrjoin='screen -A -x'
 # -s create session with name or attach to named session
 alias tmx='echo "Running: tmux new -A -D -s"; tmux new -A -D -s'
 
-alias listen-ports='echo "Running: sudo lsof -i -P -n | grep LISTEN"; sudo lsof -i -P -n | grep LISTEN'
+alias listen-ports='echo "Running: lsof -i -P -n | grep LISTEN"; lsof -i -P -n | grep LISTEN'
 alias pwdcp='pwd | pbcopy; echo "Copied $PWD to clipboard"'
 
 # nvim wrapper to handle pyenv virtualenv
