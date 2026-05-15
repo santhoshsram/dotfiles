@@ -209,3 +209,7 @@ export PATH="$PATH:/Users/santhosh/.lmstudio/bin"
 
 # Added by Antigravity
 export PATH="/Users/santhosh/.antigravity/antigravity/bin:$PATH"
+
+# Added for Android Studio
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/latest/bin"
