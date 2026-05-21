@@ -161,10 +161,10 @@ export PIP_REQUIRE_VIRTUALENV=true
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# If a ~/.env.secrets exist source it
+# If a ~/.env.locals exist source it
 # Using dot notation (equivalent to source)
-if [ -f ~/.env.secrets ]; then
-   . ~/.env.secrets
+if [ -f ~/.env.locals ]; then
+   . ~/.env.locals
 fi
 
 # Switch bash to vi/vim mode from emacs mode
