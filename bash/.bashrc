@@ -213,3 +213,15 @@ export PATH="/Users/santhosh/.antigravity/antigravity/bin:$PATH"
 # Added for Android Studio
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/latest/bin"
+
+# pnpm
+export PNPM_HOME="/Users/santhosh/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# go
+export PATH="$HOME/go/bin:$PATH"
+# go end
