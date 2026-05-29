@@ -2,6 +2,8 @@
 input=$(cat)
 
 model=$(echo "$input" | jq -r '.model.display_name // "unknown"')
+effort=$(echo "$input" | jq -r '.effort.level // empty')
+[ -n "$effort" ] && model="${model} (${effort})"
 cwd=$(echo "$input" | jq -r '.workspace.current_dir // .cwd // ""')
 folder=$(basename "$cwd")
 
@@ -31,31 +33,21 @@ if [ -n "$duration_ms" ] && [ "$duration_ms" -gt 0 ] 2>/dev/null; then
   fi
 fi
 
-# Context window usage: visual progress bar (10 circles wide)
+# Context window usage: compact percentage
 used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
 if [ -n "$used_pct" ]; then
   used_int=$(printf "%.0f" "$used_pct")
-  filled=$(( used_int / 10 ))
-  empty_blocks=$(( 10 - filled ))
-  bar=""
-  for i in $(seq 1 $filled); do bar="${bar}●"; done
-  for i in $(seq 1 $empty_blocks); do bar="${bar}○"; done
-  context_str="📖 ${bar} ${used_int}%"
+  context_str="📖 ${used_int}% ctx"
 else
   context_str=""
 fi
 
-# Rate limit (5-hour window): battery with circular progress bar
+# Rate limit (5-hour window): compact percentage
 rate_limit_pct=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
 rate_limit_str=""
 if [ -n "$rate_limit_pct" ]; then
   rate_int=$(printf "%.0f" "$rate_limit_pct")
-  filled=$(( rate_int / 10 ))
-  empty_blocks=$(( 10 - filled ))
-  bar=""
-  for i in $(seq 1 $filled); do bar="${bar}●"; done
-  for i in $(seq 1 $empty_blocks); do bar="${bar}○"; done
-  rate_limit_str="🔋 ${bar} ${rate_int}% (5h usage)"
+  rate_limit_str="🔋 ${rate_int}% 5h"
 fi
 
 parts="🧠 ${model}"
