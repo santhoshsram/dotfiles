@@ -53,10 +53,14 @@ brew install --cask font-commit-mono-nerd-font
 
 Start a new tmux session, then press `Ctrl+Space I` (Prefix + I) to install all plugins.
 
-7. Claude Code statusline
+7. Claude Code
 
-The `claude` package installs a statusline script for Claude Code (`~/.claude/statusline-command.sh`).
-After stowing, point Claude Code to it by adding the following to `~/.claude/settings.json`:
+The `claude` package installs:
+
+- `~/.claude/CLAUDE.md` — global Claude Code rules applied across all repos.
+  Picked up automatically once stowed; no further setup needed.
+- `~/.claude/statusline-command.sh` — a statusline script. After stowing,
+  point Claude Code to it by adding the following to `~/.claude/settings.json`:
 ```json
 "statusLine": {
   "type": "command",
