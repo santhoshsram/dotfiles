@@ -35,6 +35,19 @@ wasting retries.
   `git worktree remove -f -f <path>`, then `git worktree prune`.
 - Parallel tool calls only for independent, non-conflicting reads.
 
+## Memory file location
+
+Project memory has ONE canonical home: the absolute
+`~/.claude/projects/<project-slug>/memory/` (the path the harness names in
+the session system prompt). Always write memory files and their `MEMORY.md`
+index there.
+
+Never use a repo-relative path. The slug embeds the repo's path, so a
+relative `memory/` or `.claude/projects/...` resolves *inside the working
+repo* and spawns an in-repo twin that drifts and gets committed by accident.
+Expand to the absolute `~/.claude/...` path before any write. If a twin
+already exists, fold it into the canonical store and delete it.
+
 ## Writing style
 
 The only dash to use in anything you write (commit messages, PR titles and
