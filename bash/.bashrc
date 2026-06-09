@@ -67,7 +67,7 @@ Machine=$(uname)
 #  \[\033[01;37m\]>                       -  <bold><white>RIGHT_ARROW1
 #  \[\033[00m\] '                         -  RESET to default style<space>
 
-PS1='\[\033[1;37m\][\[\033[0;32m\]\w \[\033[0;36m\]`GIT_BRANCH_PROMPT`\[\033[0;34m\]`KUBECTL_CONTEXT_PROMPT` \[\033[0;35m\](\D{%d-%b-%Y %T})\[\033[1;37m\] (mode: vim)]\[\033[00m\]\n\[\033[01;37m\]>\[\033[00m\] '
+PS1='\[\033[1;37m\][\[\033[0;32m\]\w \[\033[0;36m\]`GIT_BRANCH_PROMPT` \[\033[0;35m\](\D{%d-%b-%Y %T})\[\033[1;37m\] (mode: vim)]\[\033[00m\]\n\[\033[01;37m\]>\[\033[00m\] '
 #PS1='\e[1;37m[\e[0;32m\w\e \e[0;34m`GIT_BRANCH_PROMPT` \e[0;35m(\D{%e-%b-%Y %T})\e[1;37m]\e[00m\n\e[01;37m>\e[00m '
 
 export EDITOR=vim
@@ -142,7 +142,18 @@ fi
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# Disabled: 'pyenv virtualenv-init -' installs a PROMPT_COMMAND hook that ran on
+# every prompt (~1s lag). It only provided auto-activation of a pyenv-virtualenv
+# when you cd into a dir whose .python-version names that env. With it off:
+#   - pyenv itself still works (line 144): version switching, shims, .python-version
+#     pointing at a plain Python version (e.g. 3.11.4) are all unaffected.
+#   - virtualenvs no longer auto-activate on cd. Activate/deactivate by hand:
+#       pyenv activate <envname>     # e.g. pyenv activate myproj-3.11
+#       pyenv deactivate
+#     (list envs with: pyenv virtualenvs)
+# If auto-activation is ever wanted back without the per-prompt cost, switch to a
+# cd-triggered hook instead of PROMPT_COMMAND.
+# eval "$(pyenv virtualenv-init -)"
 
 # Add pipx bin path to PATH env var
 # Created by `pipx` on 2023-04-03 17:40:48
