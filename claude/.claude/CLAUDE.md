@@ -81,3 +81,9 @@ fix(checkout/cart): stop double-charge on retry (#418, #420)
 - issue refs: trailing `(#NNN)`, comma-separated for several `(#428, #452)`.
   References the issue, not the PR; squash-merge appends the PR number
   automatically, so don't pre-add it.
+
+## Authoring plugins are scoped off
+
+The authoring-only plugins `plugin-dev`, `agent-sdk-dev`, `skill-creator` are
+disabled at user scope and re-enabled only in `~/projects/santhosh-claude-plugins`
+via its `settings.local.json`: intentional context-trim, not breakage.
