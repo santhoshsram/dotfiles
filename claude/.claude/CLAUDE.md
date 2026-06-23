@@ -95,8 +95,8 @@ via its `settings.local.json`: intentional context-trim, not breakage.
 - playwright: use `browser_snapshot`, interact via its element refs.
 - mobile-mcp: use `mobile_list_elements_on_screen`, then tap the returned
   coords with `mobile_click_on_screen_at_coordinates` (it has no ref-based tap).
-- AVOID `browser_take_screenshot` / `mobile_take_screenshot` to discover or map
-  a UI when the tree is available.
-- Still screenshot when the task itself is visual (colors, layout, rendered
-  borders, map tiles) or the tree returns no actionable nodes (canvas, WebView,
-  MapLibre).
+- Never read a tap coordinate off a screenshot; take coordinates from the tree.
+- Don't screenshot just to see what elements are on screen; list the tree.
+- Screenshots are still right for: confirming an action advanced the screen,
+  checking anything visual (colors, layout, rendered borders, map tiles), or
+  when the tree returns no actionable nodes (canvas, WebView, MapLibre).
