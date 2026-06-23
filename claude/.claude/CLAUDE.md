@@ -87,3 +87,16 @@ fix(checkout/cart): stop double-charge on retry (#418, #420)
 The authoring-only plugins `plugin-dev`, `agent-sdk-dev`, `skill-creator` are
 disabled at user scope and re-enabled only in `~/projects/santhosh-claude-plugins`
 via its `settings.local.json`: intentional context-trim, not breakage.
+
+## UI automation: read the element tree, not screenshots
+
+- To discover or navigate a UI, read the structural element tree; it is far
+  faster than the screenshot-then-review loop.
+- playwright: use `browser_snapshot`, interact via its element refs.
+- mobile-mcp: use `mobile_list_elements_on_screen`, then tap the returned
+  coords with `mobile_click_on_screen_at_coordinates` (it has no ref-based tap).
+- AVOID `browser_take_screenshot` / `mobile_take_screenshot` to discover or map
+  a UI when the tree is available.
+- Still screenshot when the task itself is visual (colors, layout, rendered
+  borders, map tiles) or the tree returns no actionable nodes (canvas, WebView,
+  MapLibre).
