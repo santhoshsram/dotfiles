@@ -55,6 +55,15 @@ bodies, comments, docs, chat) is the plain keyboard hyphen `-` (the key next
 to `0`, U+002D). Never use the em-dash `—` (U+2014) or en-dash `–` (U+2013).
 Recast with a colon, comma, parens, or two sentences instead.
 
+## Code comments
+
+A comment serves the next reader of the current file, not a witness to the
+diff. Explain why the code is the way it is, never how it got there.
+
+- No change-history narration ("added later because X", "previously X, now Y"). Git holds that.
+- No restating what the code says (`// increment i`).
+- Do capture: non-obvious intent, a non-local constraint, why this over the obvious alternative. No such why? Leave it uncommented; silence beats noise.
+
 ## Commit & PR title convention
 
 Commit subjects and PR titles follow Conventional Commits
