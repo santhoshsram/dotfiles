@@ -62,6 +62,7 @@ diff. Explain why the code is the way it is, never how it got there.
 
 - No change-history narration ("added later because X", "previously X, now Y"). Git holds that.
 - No restating what the code says (`// increment i`).
+- No issue/PR refs (`#NNN`) in comments — a ref is diff-witness narration, not a why.
 - Do capture: non-obvious intent, a non-local constraint, why this over the obvious alternative. No such why? Leave it uncommented; silence beats noise.
 
 ## Commit & PR title convention
