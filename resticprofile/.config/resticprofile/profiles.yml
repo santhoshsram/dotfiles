@@ -76,6 +76,7 @@ default:
       - "/Users/santhosh/.kaggle"
       - "/Users/santhosh/.hawtjni"
       - "/Users/santhosh/.continue"
+      - "/Users/santhosh/.cursor"
       - "/Users/santhosh/.cline"
       - "/Users/santhosh/.copilot"
       - "/Users/santhosh/.mcp-auth"
