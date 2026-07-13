@@ -6,7 +6,7 @@ default:
   repository: "local:/Volumes/restic-backup/santhosh-mba"
   password-file: "key.txt"
 
-  # Schedule config: Every 4 hours
+  # Schedule config: Every 2 hours
   schedule: "*-*-* 00,02,04,06,08,10,12,14,16,18,20,22:00:00"
   schedule-permission: "user"
 
@@ -27,6 +27,8 @@ default:
     prune: true      # Actually delete the data chunks freed up by the retention policy
 
   backup:
+    exclude-caches: true
+    one-file-system: true
     source:
       - "/Users/santhosh"
     exclude:
