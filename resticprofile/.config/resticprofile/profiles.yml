@@ -1,0 +1,62 @@
+global:
+  restic-lock-retry-after: 1m
+
+default:
+  # Sets the backup destination to a folder on your USB drive
+  repository: "local:/Volumes/restic-backup/santhosh-mba"
+  password-file: "key.txt"
+
+  # Schedule config: Every 4 hours
+  schedule: "*-*-* 00,02,04,06,08,10,12,14,16,18,20,22:00:00"
+  schedule-permission: "user"
+
+  # Ensure the compression feature is enabled
+  env:
+    RESTIC_COMPRESSION: auto
+
+  # Check if the USB drive is mounted before running
+  condition: 'mount | grep -q "/Volumes/restic-backup"'
+
+  # Retention policy: Runs automatically after the backup finishes
+  retention:
+    after-backup: true
+    keep-hourly: 12
+    keep-daily: 7    # Keep 1 backup per day for the last 7 days
+    keep-weekly: 4   # Keep 1 backup per week for the last month
+    keep-monthly: 6  # Keep 1 backup per month for the last 6 months
+    prune: true      # Actually delete the data chunks freed up by the retention policy
+
+  backup:
+    source:
+      - "/Users/santhosh"
+    exclude:
+      # --- Your Manual SkipPaths ---
+      - "/Users/santhosh/Music/MyMusic"
+      - "/Users/santhosh/Library/Developer/Xcode/DerivedData"
+      - "/Users/santhosh/Library/Developer/Xcode/iOS DeviceSupport"
+      - "/Users/santhosh/Library/Developer/CoreSimulator"
+      - "/Users/santhosh/Library/Application Support/WhatPulse"
+      - "/Users/santhosh/Library/Android/sdk/system-images"
+      - "/Users/santhosh/Downloads/NO BACKUP"
+      - "/Users/santhosh/go"
+      - "/Users/santhosh/.gradle"
+      - "/Users/santhosh/.gemini"
+      - "/Users/santhosh/.antigravity"
+      - "/Users/santhosh/.antigravity-ide"
+      - "/Users/santhosh/.lmstudio"
+      - "/Users/santhosh/.android"
+      - "/Users/santhosh/.vscode"
+
+      # --- Your Manual CLI Exclusion ---
+      - "/Users/santhosh/Library/Containers/com.docker.docker"
+
+      # --- Recommended Developer Caches ---
+      - "/Users/santhosh/.docker"
+      - "/Users/santhosh/.vagrant.d"
+      - "/Users/santhosh/.npm"
+      - "/Users/santhosh/.m2"
+      - "/Users/santhosh/.gem"
+      - "/Users/santhosh/.pyenv"
+      - "/Users/santhosh/.conda"
+      - "/Users/santhosh/Library/Caches"
+      - "/Users/santhosh/.Trash"

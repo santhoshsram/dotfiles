@@ -11,7 +11,7 @@ brew install stow
 3. Set up symlinks using stow
 ```
 cd ~/dotfiles
-stow bash git vim nvim ghostty tmux screen ssh claude
+stow bash git vim nvim ghostty tmux screen ssh claude resticprofile
 ```
 
 Note: `~/.ssh/` must exist before stowing ssh (`mkdir -p ~/.ssh && chmod 700 ~/.ssh`).
