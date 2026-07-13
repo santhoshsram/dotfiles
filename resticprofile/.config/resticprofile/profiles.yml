@@ -30,7 +30,7 @@ default:
     source:
       - "/Users/santhosh"
     exclude:
-      # --- Your Manual SkipPaths ---
+      # --- From time machine excludes ---
       - "/Users/santhosh/Music/MyMusic"
       - "/Users/santhosh/Library/Developer/Xcode/DerivedData"
       - "/Users/santhosh/Library/Developer/Xcode/iOS DeviceSupport"
@@ -50,13 +50,43 @@ default:
       # --- Your Manual CLI Exclusion ---
       - "/Users/santhosh/Library/Containers/com.docker.docker"
 
-      # --- Recommended Developer Caches ---
+      # --- System and Developer Caches ---
+      - "/Users/santhosh/.azure"
+      - "/Users/santhosh/.snowflake"
+      - "/Users/santhosh/.aws/credentials"
       - "/Users/santhosh/.docker"
       - "/Users/santhosh/.vagrant.d"
       - "/Users/santhosh/.npm"
+      - "/Users/santhosh/.nvm"
       - "/Users/santhosh/.m2"
+      - "/Users/santhosh/.bundle"
+      - "/Users/santhosh/.cocoapods"
       - "/Users/santhosh/.gem"
       - "/Users/santhosh/.pyenv"
       - "/Users/santhosh/.conda"
       - "/Users/santhosh/Library/Caches"
+      - "/Users/santhosh/.expo"
+      - "/Users/santhosh/.securecoder"
+      - "/Users/santhosh/.swiftpm"
+      - "/Users/santhosh/.vscode-shared"
+      - "/Users/santhosh/.ollama"
+      - "/Users/santhosh/.keras"
+      - "/Users/santhosh/.kaggle"
+      - "/Users/santhosh/.hawtjni"
+      - "/Users/santhosh/.continue"
+      - "/Users/santhosh/.cline"
+      - "/Users/santhosh/.copilot"
+      - "/Users/santhosh/.mcp-auth"
+      - "/Users/santhosh/.zcompcache"
+      - "/Users/santhosh/.zsh_sessions"
+      - "/Users/santhosh/.bash_sessions"
+      - "/Users/santhosh/.zcompcache"
       - "/Users/santhosh/.Trash"
+
+      # Build artifacts in ~/projects
+      - "/Users/santhosh/projects/**/node_modules"
+      - "/Users/santhosh/projects/**/.gradle"
+      - "/Users/santhosh/projects/**/build"
+      - "/Users/santhosh/projects/**/target"
+      - "/Users/santhosh/projects/**/bin"
+      - "/Users/santhosh/projects/**/dist"
