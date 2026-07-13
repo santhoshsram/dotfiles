@@ -31,6 +31,10 @@ default:
     one-file-system: true
     source:
       - "/Users/santhosh"
+    iexclude:
+      - "/Users/santhosh/Library/Application Support/**/cache"
+      - "/Users/santhosh/Library/Application Support/**/caches"
+      - "/Users/santhosh/Library/Application Support/**/cacheddata"
     exclude:
       # --- From time machine excludes ---
       - "/Users/santhosh/Music/MyMusic"
