@@ -53,6 +53,7 @@ default:
       - "/Users/santhosh/Library/Containers/com.docker.docker"
 
       # --- System and Developer Caches ---
+      - "/Users/santhosh/.cache"
       - "/Users/santhosh/.azure"
       - "/Users/santhosh/.snowflake"
       - "/Users/santhosh/.aws/credentials"
@@ -83,7 +84,6 @@ default:
       - "/Users/santhosh/.zcompcache"
       - "/Users/santhosh/.zsh_sessions"
       - "/Users/santhosh/.bash_sessions"
-      - "/Users/santhosh/.zcompcache"
       - "/Users/santhosh/.Trash"
 
       # Build artifacts in ~/projects
@@ -93,3 +93,4 @@ default:
       - "/Users/santhosh/projects/**/target"
       - "/Users/santhosh/projects/**/bin"
       - "/Users/santhosh/projects/**/dist"
+      - "/Users/santhosh/projects/**/.expo"
