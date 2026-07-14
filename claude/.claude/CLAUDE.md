@@ -1,34 +1,29 @@
 # Global Claude Code rules
 
-Working-discipline rules for all repositories. Subagents don't inherit this
-file or session context — they act only on their spawn prompt. So these are
-reminders for me (the orchestrator) when writing subagent prompts and doing
-git work.
+Subagents don't inherit this file; they act only on their spawn prompt, so
+put any rule below that a subagent needs into its spawn prompt.
 
 ## Parallel subagents in git worktrees
 
 Use `isolation: "worktree"` so parallel agents never share a directory. The
-spawn prompt must cover worktree behavior or you get branch sprawl and churn:
+spawn prompt must cover worktree behavior or you get branch sprawl:
 
-- A worktree starts on an auto branch `worktree-agent-<id>`. Don't have the
-  agent run `git checkout -b` — that leaves two branches per fix. First
-  action: `git branch -m worktree-agent-<id> fix/<issue>-<slug>`, then work
-  and push that one branch. Supply the target branch name in the prompt.
-- Tell the agent it's in a worktree; it must edit worktree-relative paths,
-  not absolute shared-checkout paths (those get rejected, risking a no-op
-  commit before the real fix).
-- A fresh worktree has no installed dependencies. Have the agent install them
-  before running tests/lint, or stray tool versions make tests silently
-  no-op and trigger repeated force-pushes.
-- No background-poll or connectivity-probe calls (e.g. `echo ping`, `pwd`,
-  `echo alive`). Run work synchronously.
+- Worktree starts on auto branch `worktree-agent-<id>`. Don't have the agent
+  `git checkout -b` (leaves two branches per fix). First action:
+  `git branch -m worktree-agent-<id> fix/<issue>-<slug>`, then work and push
+  that one branch. Supply the target name in the prompt.
+- Tell the agent it's in a worktree; edit worktree-relative paths, not absolute
+  shared-checkout paths (those get rejected, risking a no-op commit).
+- Fresh worktree has no deps installed. Have the agent install before
+  tests/lint, or stray tool versions make tests silently no-op.
+- No background-poll/connectivity probes (`echo ping`, `pwd`). Run
+  synchronously.
 
 ## Sequential git/worktree teardown
 
 Run git state mutations (worktree remove/unlock, branch delete, push
---delete, bulk cleanup, rebase/reset) one at a time. Never fire parallel or
-duplicate git mutations — one locked/errored call cancels the whole batch,
-wasting retries.
+--delete, rebase/reset) one at a time. Never parallel or duplicate: one
+locked/errored call cancels the whole batch.
 
 - Chain steps in one script with `&&`/`;`, not parallel calls.
 - Locked worktree: `git worktree unlock <path>`, then
@@ -37,38 +32,32 @@ wasting retries.
 
 ## Memory file location
 
-Project memory has ONE canonical home: the absolute
-`~/.claude/projects/<project-slug>/memory/` (the path the harness names in
-the session system prompt). Always write memory files and their `MEMORY.md`
-index there.
-
-Never use a repo-relative path. The slug embeds the repo's path, so a
-relative `memory/` or `.claude/projects/...` resolves *inside the working
+Project memory has ONE home: absolute `~/.claude/projects/<project-slug>/memory/`
+(path the harness names in the session prompt). Never a repo-relative path: the
+slug embeds the repo path, so relative `memory/` resolves *inside the working
 repo* and spawns an in-repo twin that drifts and gets committed by accident.
-Expand to the absolute `~/.claude/...` path before any write. If a twin
-already exists, fold it into the canonical store and delete it.
+Expand to absolute `~/.claude/...` before any write. Fold any existing twin back
+into the canonical store and delete it.
 
 ## Writing style
 
-The only dash to use in anything you write (commit messages, PR titles and
-bodies, comments, docs, chat) is the plain keyboard hyphen `-` (the key next
-to `0`, U+002D). Never use the em-dash `—` (U+2014) or en-dash `–` (U+2013).
-Recast with a colon, comma, parens, or two sentences instead.
+Only dash to use anywhere (commits, PR titles/bodies, comments, docs, chat) is
+the plain hyphen `-` (U+002D). Never the em-dash `—` (U+2014) or en-dash `–`
+(U+2013). Recast with colon, comma, parens, or two sentences.
 
 ## Code comments
 
-A comment serves the next reader of the current file, not a witness to the
-diff. Explain why the code is the way it is, never how it got there.
+A comment serves the next reader of the file, not the diff. Explain why the
+code is the way it is, never how it got there.
 
-- No change-history narration ("added later because X", "previously X, now Y"). Git holds that.
-- No restating what the code says (`// increment i`).
-- No issue/PR refs (`#NNN`) in comments — a ref is diff-witness narration, not a why.
-- Do capture: non-obvious intent, a non-local constraint, why this over the obvious alternative. No such why? Leave it uncommented; silence beats noise.
+- No change-history narration ("added later because X"). Git holds that.
+- No restating the code (`// increment i`).
+- No issue/PR refs (`#NNN`): a ref is diff-witness narration, not a why.
+- Do capture: non-obvious intent, a non-local constraint, why this over the obvious alternative. No such why? Leave it uncommented.
 
 ## Commit & PR title convention
 
-Commit subjects and PR titles follow Conventional Commits
-(https://www.conventionalcommits.org). In squash-merge repos the PR title
+Conventional Commits (conventionalcommits.org). Squash-merge repos: PR title
 becomes the commit subject, so keep them in sync.
 
 ```
@@ -78,35 +67,36 @@ feat(auth): add refresh-token rotation (#142)
 fix(checkout/cart): stop double-charge on retry (#418, #420)
 ```
 
-- type: one of `feat`, `fix`, `perf`, `refactor`, `chore`, `docs`, `ci`,
-  `test`, `build`, `revert`. Pick by intent, not area; a simulation or
-  diagnostic change is still a `feat`/`fix`/`chore` with a `sim`/`diag` scope.
+- type: `feat`, `fix`, `perf`, `refactor`, `chore`, `docs`, `ci`, `test`,
+  `build`, `revert`. Pick by intent, not area; a sim/diag change is still a
+  `feat`/`fix`/`chore` with a `sim`/`diag` scope.
 - scope: the module/service/app touched, from the directory layout
-  (`operations`, `customer`, `dispatch`). Each repo's scope list lives in its
-  own CONTRIBUTING.md, not here. Sub-scope with `/`
-  (`feat(customer/voice)`), multiple areas with `,`
-  (`fix(customer,notification)`). Optional; type alone is valid (`docs: ...`).
+  (`operations`, `customer`). Each repo's scope list lives in its own
+  CONTRIBUTING.md. Sub-scope with `/` (`feat(customer/voice)`), multiple areas
+  with `,`. Optional; type alone is valid.
 - description: imperative, lower-case start, no trailing period, max ~70 chars.
   Longer what/why goes in the body.
-- issue refs: trailing `(#NNN)`, comma-separated for several `(#428, #452)`.
-  References the issue, not the PR; squash-merge appends the PR number
-  automatically, so don't pre-add it.
+- issue refs: trailing `(#NNN)`, comma-separated. References the issue, not the
+  PR; squash-merge appends the PR number, so don't pre-add it.
+- PR body: add `Closes #NNN` (or `Fixes`/`Resolves`) on its own line for each
+  issue the PR fully fixes. This links the issue in GitHub's Development panel
+  so it auto-closes on merge; a bare `(#NNN)` mention does not close it. If the
+  PR only partly fixes an issue, mention it without the closing keyword.
 
 ## Authoring plugins are scoped off
 
-The authoring-only plugins `plugin-dev`, `agent-sdk-dev`, `skill-creator` are
-disabled at user scope and re-enabled only in `~/projects/santhosh-claude-plugins`
-via its `settings.local.json`: intentional context-trim, not breakage.
+Authoring-only plugins `plugin-dev`, `agent-sdk-dev`, `skill-creator` are off
+at user scope, on only in `~/projects/santhosh-claude-plugins` via its
+`settings.local.json`: intentional context-trim, not breakage.
 
 ## UI automation: read the element tree, not screenshots
 
-- To discover or navigate a UI, read the structural element tree; it is far
-  faster than the screenshot-then-review loop.
-- playwright: use `browser_snapshot`, interact via its element refs.
-- mobile-mcp: use `mobile_list_elements_on_screen`, then tap the returned
-  coords with `mobile_click_on_screen_at_coordinates` (it has no ref-based tap).
+- To discover/navigate a UI, read the structural element tree; far faster than
+  the screenshot-then-review loop.
+- playwright: `browser_snapshot`, interact via element refs.
+- mobile-mcp: `mobile_list_elements_on_screen`, then tap returned coords with
+  `mobile_click_on_screen_at_coordinates` (no ref-based tap).
 - Never read a tap coordinate off a screenshot; take coordinates from the tree.
-- Don't screenshot just to see what elements are on screen; list the tree.
 - Screenshots are still right for: confirming an action advanced the screen,
-  checking anything visual (colors, layout, rendered borders, map tiles), or
-  when the tree returns no actionable nodes (canvas, WebView, MapLibre).
+  anything visual (colors, layout, borders, map tiles), or when the tree returns
+  no actionable nodes (canvas, WebView, MapLibre).
