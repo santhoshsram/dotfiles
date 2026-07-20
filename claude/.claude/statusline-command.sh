@@ -4,6 +4,7 @@ input=$(cat)
 model=$(echo "$input" | jq -r '.model.display_name // "unknown"')
 effort=$(echo "$input" | jq -r '.effort.level // empty')
 [ -n "$effort" ] && model="${model} (${effort})"
+style=$(echo "$input" | jq -r '.output_style.name // empty')
 cwd=$(echo "$input" | jq -r '.workspace.current_dir // .cwd // ""')
 folder=$(basename "$cwd")
 
@@ -59,5 +60,6 @@ parts="🧠 ${model}"
 [ -n "$context_str" ] && parts="${parts} | ${context_str}"
 parts="${parts} | 📂 ${folder}"
 [ -n "$git_branch" ] && parts="${parts} | 🌿 ${git_branch}"
+[ -n "$style" ] && parts="${parts} | 🗣️ ${style}"
 
 printf "%s" "$parts"
