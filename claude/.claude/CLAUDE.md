@@ -82,6 +82,9 @@ fix(checkout/cart): stop double-charge on retry (#418, #420)
   issue the PR fully fixes. This links the issue in GitHub's Development panel
   so it auto-closes on merge; a bare `(#NNN)` mention does not close it. If the
   PR only partly fixes an issue, mention it without the closing keyword.
+- Stage explicit paths, never `git add -A` / `git add .` (they sweep in
+  untracked scratchpad notes and freshly-built binaries the user didn't mean to
+  commit). If asked to commit, list the files.
 
 ## Authoring plugins are scoped off
 
