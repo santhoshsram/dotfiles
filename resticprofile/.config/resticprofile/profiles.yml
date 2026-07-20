@@ -63,3 +63,9 @@ default:
       - "/Users/santhosh/.config/**/Cache"
       - "/Users/santhosh/.config/**/cache"
       - "/Users/santhosh/.config/**/CachedData"
+
+b2:
+  inherit: default
+  repository: "b2:santhosh-mba-restic-test"
+  schedule: "*-*-* 00,06,12,18:00:00"
+  schedule-permission: "user"
