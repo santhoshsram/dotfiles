@@ -3,3 +3,5 @@
 .DS_Store
 vim/.vim/pack/
 resticprofile/.config/resticprofile/key.txt
+resticprofile/.config/resticprofile/local.resticprofile*.log
+resticprofile/.config/resticprofile/b2.env

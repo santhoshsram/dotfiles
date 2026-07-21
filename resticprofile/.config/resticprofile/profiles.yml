@@ -6,10 +6,6 @@ default:
   repository: "local:/Volumes/restic-backup/santhosh-mba"
   password-file: "key.txt"
 
-  # Schedule config: Every 2 hours
-  schedule: "*-*-* 00,02,04,06,08,10,12,14,16,18,20,22:00:00"
-  schedule-permission: "user"
-
   # Ensure the compression feature is enabled
   env:
     RESTIC_COMPRESSION: auto
@@ -18,15 +14,17 @@ default:
   condition: 'mount | grep -q "/Volumes/restic-backup"'
 
   # Retention policy: Runs automatically after the backup finishes
-  retention:
+  forget:
     after-backup: true
-    keep-hourly: 12
+    keep-hourly: 8
     keep-daily: 7    # Keep 1 backup per day for the last 7 days
     keep-weekly: 4   # Keep 1 backup per week for the last month
     keep-monthly: 6  # Keep 1 backup per month for the last 6 months
     prune: true      # Actually delete the data chunks freed up by the retention policy
 
   backup:
+    schedule: "*-*-* 00,03,06,09,12,15,18,21:00:00"
+    schedule-permission: "user"
     exclude-caches: true
     one-file-system: true
     source:
@@ -50,6 +48,10 @@ default:
     exclude:
       - "/Users/santhosh/Downloads/NO BACKUP"
 
+      # Secrets
+      - "/Users/santhosh/dotfiles/resticprofile/.config/resticprofile/key.txt"
+      - "/Users/santhosh/dotfiles/resticprofile/.config/resticprofile/b2.env"
+
       # Inside projects — build artifacts
       - "/Users/santhosh/projects/**/node_modules"
       - "/Users/santhosh/projects/**/.gradle"
@@ -60,20 +62,27 @@ default:
       - "/Users/santhosh/projects/**/.expo"
       - "/Users/santhosh/projects/**/.terraform"
       - "/Users/santhosh/projects/**/packer_cache"
-      - "/Users/santhosh/projects/**/packer-manifest.json"
-      - "/Users/santhosh/projects/**/.terraform.lock.hcl"
-      - "/Users/santhosh/projects/**/*.tfstate"
-      - "/Users/santhosh/projects/**/*.tfstate.backup"
-      - "/Users/santhosh/projects/**/*.tfvars"
-      - "/Users/santhosh/projects/**/terraform.tfplan"
 
       # Inside .config — app caches
       - "/Users/santhosh/.config/**/Cache"
       - "/Users/santhosh/.config/**/cache"
       - "/Users/santhosh/.config/**/CachedData"
 
+      # Inside projects — per-task git worktrees
+      - "/Users/santhosh/projects/**/.claude/worktrees"
+      - "/Users/santhosh/projects/**/.agent/worktrees"
+
 b2:
   inherit: default
   repository: "b2:santhosh-mba-restic-test"
-  schedule: "*-*-* 00,06,12,18:00:00"
-  schedule-permission: "user"
+  env-file: "/Users/santhosh/dotfiles/resticprofile/.config/resticprofile/b2.env"
+  backup:
+    schedule: "*-*-* 00,06,12,18:00:00"
+    schedule-permission: "user"
+  forget:
+    after-backup: true
+    keep-hourly: 4
+    keep-daily: 7
+    keep-weekly: 4
+    keep-monthly: 6
+    prune: true
