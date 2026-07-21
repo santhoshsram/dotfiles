@@ -58,6 +58,14 @@ default:
       - "/Users/santhosh/projects/**/bin"
       - "/Users/santhosh/projects/**/dist"
       - "/Users/santhosh/projects/**/.expo"
+      - "/Users/santhosh/projects/**/.terraform"
+      - "/Users/santhosh/projects/**/packer_cache"
+      - "/Users/santhosh/projects/**/packer-manifest.json"
+      - "/Users/santhosh/projects/**/.terraform.lock.hcl"
+      - "/Users/santhosh/projects/**/*.tfstate"
+      - "/Users/santhosh/projects/**/*.tfstate.backup"
+      - "/Users/santhosh/projects/**/*.tfvars"
+      - "/Users/santhosh/projects/**/terraform.tfplan"
 
       # Inside .config — app caches
       - "/Users/santhosh/.config/**/Cache"
