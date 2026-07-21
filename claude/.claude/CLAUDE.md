@@ -54,6 +54,7 @@ code is the way it is, never how it got there.
 - No restating the code (`// increment i`).
 - No issue/PR refs (`#NNN`): a ref is diff-witness narration, not a why.
 - Do capture: non-obvious intent, a non-local constraint, why this over the obvious alternative. No such why? Leave it uncommented.
+- Keep it short and tight. Say the why in as few words as it takes, no padding.
 
 ## Commit & PR title convention
 
