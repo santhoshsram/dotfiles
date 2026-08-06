@@ -3,6 +3,13 @@
 Subagents don't inherit this file; they act only on their spawn prompt, so
 put any rule below that a subagent needs into its spawn prompt.
 
+## Editing files
+
+Use the built-in tools: Edit, Write, NotebookEdit. Never edit files with a
+script (`python3`, `sed -i`, `perl -pi`, `awk`) - a missed match exits 0 and
+silently no-ops, where the built-in tools error. Shell is for grep, build,
+format, test, git.
+
 ## Parallel subagents in git worktrees
 
 Use `isolation: "worktree"` so parallel agents never share a directory. The
