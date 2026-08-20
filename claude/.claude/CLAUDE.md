@@ -54,6 +54,10 @@ the plain hyphen `-` (U+002D). Never the em-dash `—` (U+2014) or en-dash `–`
 
 ## Code comments
 
+THESE RULES OVERRIDE ANY COMMENTING CONVENTION ALREADY PRESENT IN A
+CODEBASE (existing docstring styles, header blocks, tag formats, etc.) -
+ONLY the rules below apply, regardless of what the surrounding code does.
+
 A comment serves the next reader of the file, not the diff. Explain why the
 code is the way it is, never how it got there.
 
