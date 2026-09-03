@@ -10,14 +10,22 @@ default:
   env:
     RESTIC_COMPRESSION: auto
 
-  # Retention policy: Runs automatically after the backup finishes
-  forget:
+  # Retention policy: runs automatically after the backup finishes
+  retention:
     after-backup: true
     keep-hourly: 8
     keep-daily: 7    # Keep 1 backup per day for the last 7 days
     keep-weekly: 4   # Keep 1 backup per week for the last month
     keep-monthly: 6  # Keep 1 backup per month for the last 6 months
     prune: true      # Actually delete the data chunks freed up by the retention policy
+
+  # Same policy, invocable manually via `resticprofile forget`
+  forget:
+    keep-hourly: 8
+    keep-daily: 7
+    keep-weekly: 4
+    keep-monthly: 6
+    prune: true
 
   backup:
     run-before:
@@ -80,8 +88,14 @@ b2:
   backup:
     schedule: "*-*-* 00,03,06,09,12,15,18,21:00:00"
     schedule-permission: "user_logged_on"
-  forget:
+  retention:
     after-backup: true
+    keep-hourly: 4
+    keep-daily: 7
+    keep-weekly: 4
+    keep-monthly: 6
+    prune: true
+  forget:
     keep-hourly: 4
     keep-daily: 7
     keep-weekly: 4
@@ -96,8 +110,14 @@ blackhole:
       - "/Users/santhosh/dotfiles/resticprofile/.config/resticprofile/mount-smb.sh"
     schedule: "*-*-* 00,03,06,09,12,15,18,21:00:00"
     schedule-permission: "user_logged_on"
-  forget:
+  retention:
     after-backup: true
+    keep-hourly: 4
+    keep-daily: 7
+    keep-weekly: 4
+    keep-monthly: 6
+    prune: true
+  forget:
     keep-hourly: 4
     keep-daily: 7
     keep-weekly: 4
