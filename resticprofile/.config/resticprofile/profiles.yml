@@ -10,9 +10,6 @@ default:
   env:
     RESTIC_COMPRESSION: auto
 
-  # Check if the USB drive is mounted before running
-  condition: 'mount | grep -q "/Volumes/restic-backup"'
-
   # Retention policy: Runs automatically after the backup finishes
   forget:
     after-backup: true
@@ -23,6 +20,9 @@ default:
     prune: true      # Actually delete the data chunks freed up by the retention policy
 
   backup:
+    run-before:
+      # Aborts the backup if the USB drive isn't mounted (no auto-mount possible for physical media)
+      - 'mount | grep -q "/Volumes/restic-backup"'
     schedule: "*-*-* 00,03,06,09,12,15,18,21:00:00"
     schedule-permission: "user_logged_on"
     exclude-caches: true
@@ -62,6 +62,7 @@ default:
       - "/Users/santhosh/projects/**/.expo"
       - "/Users/santhosh/projects/**/.terraform"
       - "/Users/santhosh/projects/**/packer_cache"
+      - "/Users/santhosh/projects/**/Pods"
 
       # Inside .config — app caches
       - "/Users/santhosh/.config/**/Cache"
@@ -77,6 +78,22 @@ b2:
   repository: "b2:santhosh-mba-restic-test"
   env-file: "/Users/santhosh/dotfiles/resticprofile/.config/resticprofile/b2.env"
   backup:
+    schedule: "*-*-* 00,03,06,09,12,15,18,21:00:00"
+    schedule-permission: "user_logged_on"
+  forget:
+    after-backup: true
+    keep-hourly: 4
+    keep-daily: 7
+    keep-weekly: 4
+    keep-monthly: 6
+    prune: true
+
+blackhole:
+  inherit: default
+  repository: "local:/Volumes/santhosh-restic/santhosh-mba"
+  backup:
+    run-before:
+      - "/Users/santhosh/dotfiles/resticprofile/.config/resticprofile/mount-smb.sh"
     schedule: "*-*-* 00,03,06,09,12,15,18,21:00:00"
     schedule-permission: "user_logged_on"
   forget:
