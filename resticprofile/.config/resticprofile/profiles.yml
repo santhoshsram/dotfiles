@@ -88,6 +88,8 @@ b2:
   repository: "b2:santhosh-mba-restic-test"
   env-file: "/Users/santhosh/dotfiles/resticprofile/.config/resticprofile/b2.env"
   backup:
+    run-before:
+      - "true"
     schedule: "*-*-* 00,03,06,09,12,15,18,21:00:00"
     schedule-permission: "user_logged_on"
 
