@@ -54,6 +54,7 @@ default:
       - "/Users/santhosh/.local/bin"
       - "/Users/santhosh/.cline"
       - "/Users/santhosh/.claude"
+      - "/Users/santhosh/.claude-zipkee"
       - "/Users/santhosh/.claude.json"
     exclude:
       - "/Users/santhosh/Downloads/NO BACKUP"
