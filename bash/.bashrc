@@ -5,26 +5,6 @@
 ##################################
 
 
-function GIT_BRANCH_PROMPT()
-{
-   GIT_BRANCH=$(git branch 2>/dev/null| sed -n "/^\*/s/^\* //p")
-   if [[ "$GIT_BRANCH" != "" ]]; then
-      echo " /  $GIT_BRANCH /"
-   else
-      echo ""
-   fi
-}
-
-function KUBECTL_CONTEXT_PROMPT()
-{
-   KUBECTL_CONTEXT=$(kubectl config current-context 2>/dev/null)
-   if [[ "$KUBECTL_CONTEXT" != "" ]]; then
-      echo " 󱃾 $KUBECTL_CONTEXT"
-   else
-      echo ""
-   fi
-}
-
 function DockerImagesCleanAll()
 {
    docker images | awk 'NR>1 {print $3}' | xargs -L 1 -t docker rmi -f
@@ -32,43 +12,6 @@ function DockerImagesCleanAll()
 
 Machine=$(uname)
 
-## Set the bash prompt
-# Pattern for setting color -> \[\033[TEXTFORMAT;COLORm\]YOURTEXT
-# To reset back to default color and format: \[\033[00m\]
-#
-# TEXTFORMATS
-#	0 - no format
-#	1 - bold
-#	2 - darken
-#	3 - italic
-#	4 - underscore
-#	5 - blink
-#	9 - strikethrough
-#
-# FG COLORS
-#	30	- black
-#	31	- red
-#	32 - green
-#	33 - yellow
-#	34 - blue
-#	35 - purple
-#	36	- cyan
-#	37	- grey / white
-
-# Breakup of below PS1 string
-# PS1=
-#  \[\033[1;37m\][                        -  <bold><white>[
-#  \[\033[0;32m\]\w                       -  <green>path-to-current-dir
-#   \[\033[0;34m\]`GIT_BRANCH_PROMPT`     -  <space><blue>(current-git-branch)<space>
-#  \[\033[0;35m\](\D{%e-%b-%Y %T})        -  <purple>(29-Mar-2023 15:11:23)
-#  \[\033[1;37m\]]                        -  <bold><white>]
-#  \[\033[00m\]                           -  RESET to default style
-#  \n                                     -  NEWLINE
-#  \[\033[01;37m\]>                       -  <bold><white>RIGHT_ARROW1
-#  \[\033[00m\] '                         -  RESET to default style<space>
-
-PS1='\[\033[1;37m\][\[\033[0;32m\]\w \[\033[0;36m\]`GIT_BRANCH_PROMPT` \[\033[0;35m\](\D{%d-%b-%Y %T})\[\033[1;37m\] (mode: vim)]\[\033[00m\]\n\[\033[01;37m\]>\[\033[00m\] '
-#PS1='\e[1;37m[\e[0;32m\w\e \e[0;34m`GIT_BRANCH_PROMPT` \e[0;35m(\D{%e-%b-%Y %T})\e[1;37m]\e[00m\n\e[01;37m>\e[00m '
 
 export EDITOR=vim
 # export TERM=xterm  # commented out — was overriding Ghostty's TERM=ghostty
@@ -191,28 +134,12 @@ bind -m vi-command '"\C-l": clear-screen'
 # Bind C-w to delete like in vim and not do weird things in bash shell
 bind -m vi-insert '"\C-w": unix-word-rubout'
 
-# Workaround to get neovim python-provider working with pyenv
-function nvimvenv {
-  if [[ -e "$VIRTUAL_ENV" && -f "$VIRTUAL_ENV/bin/activate" ]]; then
-    source "$VIRTUAL_ENV/bin/activate"
-    command nvim "$@"
-    deactivate
-  else
-    command nvim "$@"
-  fi
-}
-
-export PATH="/Users/santhosh/.config/herd-lite/bin:$PATH"
-export PHP_INI_SCAN_DIR="/Users/santhosh/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
-
 # For Bash installed via Homebrew
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 if [[ -f $(brew --prefix)/opt/fzf/shell/key-bindings.bash ]]; then
   source "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
 fi
 
-
-[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/santhosh/.lmstudio/bin"
@@ -236,3 +163,7 @@ esac
 # go
 export PATH="$HOME/go/bin:$PATH"
 # go end
+
+# Initialize starship for better shell prompts
+# see ~/starship.toml for the actual config
+eval "$(starship init bash)"

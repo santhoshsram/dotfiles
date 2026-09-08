@@ -11,7 +11,7 @@ brew install stow
 3. Set up symlinks using stow
 ```
 cd ~/dotfiles
-stow bash git vim nvim ghostty tmux screen ssh claude resticprofile
+stow bash git vim nvim ghostty tmux screen ssh claude resticprofile starship
 ```
 
 Note: `~/.ssh/` must exist before stowing ssh (`mkdir -p ~/.ssh && chmod 700 ~/.ssh`).
@@ -84,4 +84,10 @@ brew install fzf
 
 # Install fzf keybindings and autocomplete
 $(brew --prefix)/opt/fzf/install
+```
+
+9. Starship for better shell prompts
+```
+# Install starship via homebrew
+brew install starship
 ```

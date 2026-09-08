@@ -26,6 +26,3 @@ alias tmx='echo "Running: tmux new -A -D -s"; tmux new -A -D -s'
 
 alias listen-ports='echo "Running: lsof -i -P -n | grep LISTEN"; lsof -i -P -n | grep LISTEN'
 alias pwdcp='pwd | pbcopy; echo "Copied $PWD to clipboard"'
-
-# nvim wrapper to handle pyenv virtualenv
-alias nvim=nvimvenv
