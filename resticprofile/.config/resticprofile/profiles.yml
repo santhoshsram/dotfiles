@@ -57,6 +57,7 @@ default:
       - "/Users/santhosh/.claude-zipkee"
       - "/Users/santhosh/.claude-personal"
       - "/Users/santhosh/.claude.json"
+      - "/Users/santhosh/.agents"
     exclude:
       - "/Users/santhosh/Downloads/NO BACKUP"
 
